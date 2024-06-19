@@ -6,6 +6,7 @@ Arquitetura do Sistema
 Diagrama de Arquitetura
 markdown
 Copiar código
+br
 | Frontend (Angular) |
 ----------------------
 | Backend (Java)     |
