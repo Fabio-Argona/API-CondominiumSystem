@@ -3,7 +3,6 @@ package com.condominium.resident.controller;
 import com.condominium.resident.dto.ResidentDTO;
 import com.condominium.resident.exceptions.ResidentNotFoundException;
 import com.condominium.resident.exceptions.ServiceException;
-import com.condominium.resident.model.Resident;
 import com.condominium.resident.services.ResidentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
