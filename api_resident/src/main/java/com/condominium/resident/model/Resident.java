@@ -1,14 +1,21 @@
 package com.condominium.resident.model;
 
 import com.condominium.resident.dto.ResidentDTO;
+import com.condominium.resident.model.ResidentPaymentDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
+@AllArgsConstructor
+@Builder
 @Document(collection = "residents")
 @Getter
 public class Resident implements Serializable {
@@ -16,6 +23,7 @@ public class Resident implements Serializable {
     private String id;
     private String nomeCompleto;
     private String dataNascimento;
+    private List<ResidentPaymentDTO> residentPayment;
     private String genero;
     private String estadoCivil;
     private String email;
@@ -39,10 +47,19 @@ public class Resident implements Serializable {
     private String created;
     private String updated;
 
+
     // Construtor que aceita ResidentDTO
     public Resident(ResidentDTO dto) {
         this.nomeCompleto = dto.getNomeCompleto();
         this.dataNascimento = dto.getDataNascimento();
+        this.residentPayment = dto.getResidentPayment().stream()
+                .map(paymentDTO -> new ResidentPaymentDTO(
+                        paymentDTO.getDateForPayment(),
+                        paymentDTO.getValuePayment(),
+                        paymentDTO.getStatusPayment(),
+                        paymentDTO.getBarcodeNumber(),
+                        paymentDTO.getBarcodeImage()))
+                .toList();
         this.genero = dto.getGenero();
         this.estadoCivil = dto.getEstadoCivil();
         this.email = dto.getEmail();
@@ -66,5 +83,7 @@ public class Resident implements Serializable {
         this.created = dto.getCreated();
         this.updated = dto.getUpdated();
     }
-    public Resident() {}
+    public Resident() {
+        super();
+    }
 }

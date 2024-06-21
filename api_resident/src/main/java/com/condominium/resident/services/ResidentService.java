@@ -28,13 +28,16 @@ public class ResidentService {
 
     @Transactional
     public ResidentDTO create(ResidentDTO residentDTO) throws ServiceException {
-        Resident entity = new Resident(residentDTO);
-        entity.setRegistryUser(residentDTO.getRegistryUser());
-        entity.setCreated(LocalDateTime.now().toString());
-        repository.save(entity);
-        return new ResidentDTO(entity);
+        try {
+            Resident entity = new Resident(residentDTO);
+            entity.setRegistryUser(residentDTO.getRegistryUser());
+            entity.setCreated(LocalDateTime.now().toString());
+            repository.save(entity);
+            return new ResidentDTO(entity);
+        } catch (Exception e) {
+            throw new ServiceException("Failed to create resident: " + e.getMessage()); // Correção aqui
+        }
     }
-
     public ResidentDTO findById(String id) throws ServiceException {
         return repository.findById(id)
                 .map(ResidentDTO::new)
