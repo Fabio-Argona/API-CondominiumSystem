@@ -43,7 +43,7 @@ public class ResidentDTO implements Serializable {
     //@Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 números!")
     private String cpf;
 
-    private String passaporte;
+    private String password;
 
     private String fotoUrl;
 

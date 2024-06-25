@@ -58,7 +58,7 @@ public class ResidentService {
             entity.setEnderecoCorrespondencia(residentDTO.getEnderecoCorrespondencia());
             entity.setDocumentoIdentidade(residentDTO.getDocumentoIdentidade());
             entity.setCpf(residentDTO.getCpf());
-            entity.setPassaporte(residentDTO.getPassaporte());
+            entity.setPassword(residentDTO.getPassword());
             entity.setFotoUrl(residentDTO.getFotoUrl());
             entity.setUnidade(residentDTO.getUnidade());
             entity.setDataInicioResidencia(residentDTO.getDataInicioResidencia());

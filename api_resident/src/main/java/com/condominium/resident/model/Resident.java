@@ -1,13 +1,12 @@
 package com.condominium.resident.model;
 
 import com.condominium.resident.dto.ResidentDTO;
-import com.condominium.resident.model.ResidentPaymentDTO;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -26,12 +25,13 @@ public class Resident implements Serializable {
     private List<ResidentPaymentDTO> residentPayment;
     private String genero;
     private String estadoCivil;
-    private String email;
+    @Indexed(unique = true)
+    private String email;  // Índice no campo email para buscas rápidas
     private String telefone;
     private String enderecoCorrespondencia;
     private String documentoIdentidade;
     private String cpf;
-    private String passaporte;
+    private String password;
     private String fotoUrl;
     private String unidade;
     private String dataInicioResidencia;
@@ -47,8 +47,6 @@ public class Resident implements Serializable {
     private String created;
     private String updated;
 
-
-    // Construtor que aceita ResidentDTO
     public Resident(ResidentDTO dto) {
         this.nomeCompleto = dto.getNomeCompleto();
         this.dataNascimento = dto.getDataNascimento();
@@ -67,7 +65,7 @@ public class Resident implements Serializable {
         this.enderecoCorrespondencia = dto.getEnderecoCorrespondencia();
         this.documentoIdentidade = dto.getDocumentoIdentidade();
         this.cpf = dto.getCpf();
-        this.passaporte = dto.getPassaporte();
+        this.password = dto.getPassword();
         this.fotoUrl = dto.getFotoUrl();
         this.unidade = dto.getUnidade();
         this.dataInicioResidencia = dto.getDataInicioResidencia();
@@ -83,6 +81,7 @@ public class Resident implements Serializable {
         this.created = dto.getCreated();
         this.updated = dto.getUpdated();
     }
+
     public Resident() {
         super();
     }
