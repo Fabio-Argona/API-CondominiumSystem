@@ -1,6 +1,7 @@
 package com.condominium.resident.model;
 
 import com.condominium.resident.dto.ResidentDTO;
+import com.condominium.resident.dto.ResidentPaymentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
