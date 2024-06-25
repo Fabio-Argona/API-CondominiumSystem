@@ -1,24 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Resident } from './model/resident';
-import { ResidentService } from './service/resident.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ResidentService } from '../../pages/resident/service/resident.service';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Resident } from '../../pages/resident/model/resident';
+
 import { FormsModule } from '@angular/forms';
 
-@Component({
-  selector: 'app-resident',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './resident.component.html',
-  styleUrl: './resident.component.scss'
-})
-export class ResidentComponent implements OnInit {
-  formTouched: any;
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
 
-  residents: Resident[] = []
+@Component({
+  selector: 'app-resident-form',
+  standalone: true,
+  imports: [ CommonModule, FormsModule, RouterModule],
+  templateUrl: './resident-form.component.html',
+  styleUrls: ['./resident-form.component.scss']
+})
+export class ResidentFormComponent implements OnInit {
+formTouched: any;
+onSubmit() {
+throw new Error('Method not implemented.');
+}
+
+residents: Resident[] = []
 
   resident: Resident | null = null;
 
@@ -59,5 +61,3 @@ export class ResidentComponent implements OnInit {
   }
 
 }
-export { ResidentService };
-

@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Resident } from '../pages/resident/model/resident';
 
 @Component({
   selector: 'app-navegation',
   standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navegation.component.html',
-  styleUrl: './navegation.component.scss'
+  styleUrls: ['./navegation.component.scss']
 })
 export class NavegationComponent {
+
+  residents: Resident[] = [
+   
+  ];
 
   isOpen = false;
 
@@ -25,5 +30,4 @@ export class NavegationComponent {
     event.stopPropagation();
     this.isOpen = !this.isOpen;
   }
-
 }

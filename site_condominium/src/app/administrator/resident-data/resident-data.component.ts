@@ -1,61 +1,56 @@
-import { Component, DEFAULT_CURRENCY_CODE, LOCALE_ID, OnInit, ViewEncapsulation, inject } from '@angular/core';
-import { Resident_ownerService } from '../../administrator/owners/service/resident_owner.service';
-import { Resident, ResidentService } from '../../pages/resident/service/resident.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, DEFAULT_CURRENCY_CODE, LOCALE_ID, OnInit } from '@angular/core';
+import { ResidentService } from '../../pages/resident/service/resident.service';
+import { Resident } from '../../pages/resident/model/resident';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-resident-data',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'pt' },
-    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
-    CurrencyPipe,
+  imports: [
+    CommonModule,
+    RouterModule,
   ],
   templateUrl: './resident-data.component.html',
-  styleUrl: './resident-data.component.scss'
+  styleUrls: ['./resident-data.component.scss']
 })
 export class ResidentDataComponent implements OnInit {
 
-  constructor(private resident_ownerService: Resident_ownerService) {}
-
-  private residentService = inject(ResidentService);
-
   residents: Resident[] = [];
 
+  constructor(
+    private residentService: ResidentService,
 
-  ngOnInit(): any {
+  ) {}
+
+  ngOnInit(): void {
     this.loadAll();
   }
 
-  trackByResidentId(index: number, resident: any): number {
-    return resident.id;
+  trackByResidentId(index: number, resident: Resident): string {
+    return resident.id.toString(); // Certifique-se de converter para string se necessário
   }
 
   getColorClass(index: number): string {
-    // Lógica para determinar a classe de cor
     return index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200';
   }
 
-  loadAll(){
-    this.residentService.list()
-    .subscribe(residents => {
+  loadAll(): void {
+    this.residentService.list().subscribe(residents => {
       this.residents = residents;
-    })
+    });
   }
 
-  deleteBoleto(resident: Resident) {
-    this.residentService.delete(resident.id)
-    .subscribe(() => {
+  deleteBoleto(resident: Resident): void {
+    this.residentService.delete(resident.id).subscribe(() => {
       this.loadAll();
     });
   }
-  
-  editBoleto(resident: any): void {
-    console.log('Editing boleto for resident:', resident);
-    // Adicione a lógica para editar o boleto aqui
-  }
 
+  editBoleto(resident: Resident): void {
+    console.log('Editing boleto for resident:', resident);
+    // Implemente a lógica para editar o residente aqui
+  }
 
 }

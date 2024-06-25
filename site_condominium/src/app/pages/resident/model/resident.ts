@@ -11,7 +11,7 @@ export interface Resident {
   enderecoCorrespondencia:   string;
   documentoIdentidade:       string;
   cpf:                       string;
-  passaporte:                string;
+  password:                  string;
   fotoUrl:                   string;
   unidade:                   string;
   dataInicioResidencia:      string;
@@ -24,16 +24,9 @@ export interface Resident {
   preferenciasContato:       string;
   observacoes:               string;
   registryUser:              string;
-  // created: string; // You may adjust the type based on your date handling in Angular
-  // updated: string; // You may adjust the type based on your date handling in Angular
 
-  // constructor(data: Partial<Resident> = {}) {
-  //   Object.assign(this, data);
-  //   if (!this.residentPayment) {
-  //     this.residentPayment = [];
-  //   }
-  // }
 }
+
 
 export interface ResidentPayment {
   dateForPayment: string;

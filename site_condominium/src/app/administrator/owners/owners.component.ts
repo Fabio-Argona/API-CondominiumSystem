@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { Resident_ownerService } from './service/resident_owner.service';
-import { Resident, ResidentService } from '../../pages/resident/service/resident.service';
+import { ResidentService } from '../../pages/resident/service/resident.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {  Resident } from '../../pages/resident/model/resident'
 
 @Component({
   selector: 'app-owners',
