@@ -1,4 +1,4 @@
-package com.condominium.resident.model;
+package com.condominium.resident.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
