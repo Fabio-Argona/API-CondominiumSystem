@@ -2,7 +2,6 @@ package com.condominium.resident.dto;
 
 import com.condominium.resident.model.Resident;
 
-import com.condominium.resident.model.ResidentPaymentDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
