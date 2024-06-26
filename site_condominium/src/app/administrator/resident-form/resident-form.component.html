@@ -1,5 +1,5 @@
 <body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
-  <div class="flex justify-around">
+  <div class="flex justify-around mt-8">
     <div class="bg-transparent bg-zinc-100 w-1/2 text-center  border-b border-gray-200">
       <button routerLink="/owner"><span class="text-2xl p-6">Financeiro</span></button>
     </div>
@@ -27,15 +27,13 @@
             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
             <div class="flex-auto p-4 pt-6">
               <form *ngIf="resident">
-                <div class=" bg-white border-b-0 rounded-t-2xl">
-                  <h6 class="mb-6 text-3/4">Morador: {{resident.nomeCompleto}}</h6>
-                </div>
+
                 <div>
                   <div class="flex">
                     <div class="mb-4 mr-2">
                       <label for="unidade" class="block text-sm font-medium text-gray-700">Unidade</label>
                       <input type="text" id="unidade" name="unidade" [(ngModel)]="resident.unidade"
-                        class="border border-gray-300 p-2 rounded-lg w-full" disabled="true">
+                        class="border border-gray-300 p-2 rounded-lg w-full">
                     </div>
                     <div class="mb-4 ml-1 w-4/5">
                       <label for="nomeCompleto" class="block text-sm font-medium text-gray-700">Nome Completo</label>
@@ -86,10 +84,14 @@
                     <input type="areatext" id="observacoes" name="observacoes" [(ngModel)]="resident.observacoes"
                       class="border border-gray-300 p-2 rounded-lg w-full">
                   </div>
-                  <div class="text-right">
+                  <div class="text-right" >
                     <button type="submit"
-                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700">
-                      <i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Salvar
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" (click)="returnRoute()">
+                      <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="8" y1="12" x2="16" y2="12" />  <line x1="8" y1="12" x2="12" y2="16" />  <line x1="8" y1="12" x2="12" y2="8" /></svg> Voltar
+                    </button>
+                    <button type="submit"
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" (click)="editDataResident(resident)">
+                      <svg class="h-6 w-6 text-lime-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"  />  <polyline points="17 21 17 13 7 13 7 21" />  <polyline points="7 3 7 8 15 8" /></svg> Salvar
                     </button>
                   </div>
                 </div>
@@ -111,54 +113,11 @@
                 </div>
               </div>
             </div>
-            <div class="flex-auto p-4 pt-6">
-              <h6 class="mb-4 font-bold leading-tight uppercase text-xs text-slate-500">Pendente(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                <li *ngFor="let payment of resident?.residentPayment"
+            <div class="flex-auto p-4">
+              <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Em Aberto(s)</h6>
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngFor="let payment of resident?.residentPayment" >
+                <li  *ngIf="payment.statusPayment == 'Atrasado'"
                   class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
-                  <div *ngIf="payment.statusPayment === '!Efetuado'">
-                    <div class="flex items-center">
-                      <button
-                        class="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-red-600 border-transparent bg-transparent text-center align-middle font-bold uppercase text-red-600 transition-all hover:opacity-75">
-                        <i class="fas fa-arrow-down text-3xs"></i>
-                      </button>
-                      <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs text-blue-500">{{ payment.dateForPayment }}</span>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                      <p
-                        class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
-                        {{ payment.valuePayment.toFixed(2) }}
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex flex-col">
-                      <h6 class="mb-1 px-4 leading-normal text-sm text-slate-700 text-blue-600">Residente não possue boletos em aberto.</h6>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Pago(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                <li *ngFor="let payment of resident?.residentPayment"
-                  class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
-                  <div *ngIf="payment.statusPayment === 'Efetuado'">
-                    <div class="flex items-center">
-                      <button
-                        class="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-red-600 border-transparent bg-transparent text-center align-middle font-bold uppercase text-lime-600 transition-all hover:opacity-75">
-                        <i class="fas fa-arrow-down text-3xs"></i>
-                      </button>
-                      <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment | date }}</span>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                    </div>
-                  </div>
                   <div>
                     <div class="flex flex-row">
                       <div class="">
@@ -166,13 +125,76 @@
                           Valor boleto:</h6>
                       </div>
                       <p
-                        class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-lime-600 to-lime-400 text-sm bg-clip-text">
+                        class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
                         {{ payment.valuePayment.toFixed(2) }}
                       </p>
                     </div>
                     <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
                       {{payment.barcodeNumber}}</p>
                   </div>
+                  <div >
+                    <div class="flex items-center">
+                      <div class="flex flex-col">
+                        <button class="mr-2">
+                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                            <line x1="12" y1="11" x2="12" y2="17" />
+                            <polyline points="9 14 12 17 15 14" /></svg>
+                        </button>
+                      </div>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Pago(s)</h6>
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngFor="let payment of resident?.residentPayment" >
+                <li  *ngIf="payment.statusPayment === 'Efetuado'"
+                  class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
+                  <div>
+                    <div class="flex flex-row">
+                      <div class="">
+                        <h6 class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
+                          Valor boleto:</h6>
+                      </div>
+                      <p
+                        class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
+                        {{ payment.valuePayment.toFixed(2) }}
+                      </p>
+                    </div>
+                    <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
+                      {{payment.barcodeNumber}}</p>
+                  </div>
+                  <div >
+                    <div class="flex items-center">
+                      <div class="flex flex-col">
+                        <button class="mr-2">
+                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                            <line x1="12" y1="11" x2="12" y2="17" />
+                            <polyline points="9 14 12 17 15 14" /></svg>
+                        </button>
+                      </div>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                    </div>
+                  </div>
+
                 </li>
               </ul>
             </div>
