@@ -10,6 +10,7 @@ import { ResidentFormComponent } from './administrator/resident-form/resident-fo
 export const routes: Routes = [
 
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'resident', component: ResidentComponent },
   { path: 'owner', component: OwnersComponent },
   { path: 'resident-form/:id', component: ResidentFormComponent },

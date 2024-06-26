@@ -1,12 +1,6 @@
-<body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
-  <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-    <!-- Navbar -->
-    <div class="w-full px-6 py-6 mx-auto">
-<div class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
-  <div class="flex flex-wrap -mx-3">
-    <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
-  <div class="flex flex-wrap -mx-3">
-    <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none">
+<body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
+  <div class="flex flex-wrap -mx-3  mt-8 mx-2">
+    <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none mt-6 mx-6">
       <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 md:w-1/2 md:flex-none">
           <div
@@ -20,8 +14,7 @@
             <div class="flex-auto p-4 pt-0 text-center">
               <h6 class="mb-0 text-center">Saldo</h6>
               <span class="leading-tight text-xs">Saldo em caixa</span>
-              <hr
-                class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+              <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
               <h5 class="mb-0">+$2000</h5>
             </div>
           </div>
@@ -40,16 +33,14 @@
             <div class="flex-auto p-4 pt-0 text-center">
               <h6 class="mb-0 text-center">Gastos</h6>
               <span class="leading-tight text-xs">Fixos</span>
-              <hr
-                class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+              <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
               <h5 class="mb-0">$455.00</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div></div>
-</div>
+  </div>
   <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
     <div class="w-full px-6 py-6 mx-auto">
       <div class="flex flex-wrap -mx-3">
@@ -69,10 +60,7 @@
           <div
             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
             <div class="flex-auto p-4 pt-6">
-              <form *ngIf="resident">
-                <div class=" bg-white border-b-0 rounded-t-2xl">
-                  <h6 class="mb-6 text-3/4">Morador: {{resident.nomeCompleto}}</h6>
-                </div>
+              <form *ngIf="resident" (ngSubmit)="onSubmit()">
                 <div>
                   <div class="flex">
                     <div class="mb-4 mr-2">
@@ -90,7 +78,7 @@
                     <div class="mb-4 mr-3 w-1/2">
                       <label for="dataNascimento" class="block text-sm font-medium text-gray-700">Data
                         Nascimento</label>
-                      <input type="date" id="dataNascimento" name="dataNascimento" [(ngModel)]="resident.dataNascimento"
+                      <input type="text" id="dataNascimento" name="dataNascimento" [(ngModel)]="resident.dataNascimento"
                         class="border border-gray-300 p-2 rounded-lg w-full">
                     </div>
                     <div class="mb-4 w-1/2">
@@ -107,7 +95,7 @@
                     </div>
                     <div class="mb-4 w-1/4 ">
                       <label for="telefone" class="block text-sm font-medium text-gray-700">Telefone</label>
-                      <input type="tel" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
+                      <input type="text" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
                         class="border border-gray-300 p-2 rounded-lg w-full" required mask="(00) 00000-0000">
                     </div>
                   </div>
@@ -126,7 +114,7 @@
                   </div>
                   <div class="mb-4">
                     <label for="observacoes" class="block text-sm font-medium text-gray-700">Observação</label>
-                    <input type="areatext" id="observacoes" name="observacoes" [(ngModel)]="resident.observacoes"
+                    <input type="text" id="observacoes" name="observacoes" [(ngModel)]="resident.observacoes"
                       class="border border-gray-300 p-2 rounded-lg w-full">
                   </div>
                   <div class="text-right">
@@ -166,6 +154,7 @@
                         <i class="fas fa-arrow-down text-3xs"></i>
                       </button>
                       <div class="flex flex-col">
+                        <img src="../../../assets/icons/sheet.png" alt="icone pdf">
                         <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
                         <span class="leading-tight text-xs text-blue-500">{{ payment.dateForPayment }}</span>
                       </div>
@@ -190,20 +179,6 @@
               <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                 <li *ngFor="let payment of resident?.residentPayment"
                   class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
-                  <div *ngIf="payment.statusPayment === 'Efetuado'">
-                    <div class="flex items-center">
-                      <button
-                        class="leading-pro ease-soft-in text-xs bg-150 w-6.35 h-6.35 p-1.2 rounded-3.5xl tracking-tight-soft bg-x-25 mr-4 mb-0 flex cursor-pointer items-center justify-center border border-solid border-red-600 border-transparent bg-transparent text-center align-middle font-bold uppercase text-lime-600 transition-all hover:opacity-75">
-                        <i class="fas fa-arrow-down text-3xs"></i>
-                      </button>
-                      <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment | date }}</span>
-                      </div>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                    </div>
-                  </div>
                   <div>
                     <div class="flex flex-row">
                       <div class="">
@@ -218,6 +193,32 @@
                     <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
                       {{payment.barcodeNumber}}</p>
                   </div>
+
+
+
+
+                  <div *ngIf="payment.statusPayment === 'Efetuado'">
+                    <div class="flex items-center">
+                      <div class="flex flex-col">
+                        <button class="mr-2">
+                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                            <line x1="12" y1="11" x2="12" y2="17" />
+                            <polyline points="9 14 12 17 15 14" /></svg>
+                        </button>
+                      </div>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                    </div>
+                  </div>
+
                 </li>
               </ul>
             </div>
@@ -264,4 +265,4 @@
       </footer>
     </div>
   </main>
-
+</body>

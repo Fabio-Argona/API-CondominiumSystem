@@ -1,6 +1,7 @@
 package com.condominium.resident.model;
 
 import com.condominium.resident.dto.ResidentDTO;
+import com.condominium.resident.dto.ResidentPaymentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,7 @@ public class Resident implements Serializable {
     private String genero;
     private String estadoCivil;
     @Indexed(unique = true)
-    private String email;  // Índice no campo email para buscas rápidas
+    private String email;
     private String telefone;
     private String enderecoCorrespondencia;
     private String documentoIdentidade;
