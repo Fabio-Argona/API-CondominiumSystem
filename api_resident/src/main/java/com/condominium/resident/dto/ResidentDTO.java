@@ -4,9 +4,7 @@ import com.condominium.resident.model.Resident;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
@@ -81,5 +79,17 @@ public class ResidentDTO implements Serializable {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(residentPayment);
     }
+
+
+    @Setter
+    @Getter
+    public class LoginRequest {
+        // getters e setters
+        private String email;
+        private String password;
+
+    }
+
 }
+
 

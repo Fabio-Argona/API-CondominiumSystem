@@ -86,10 +86,19 @@ public class ResidentService {
         repository.deleteById(id);
     }
 
+    public ResidentService(ResidentRepository repository) {
+        this.repository = repository;
+    }
 
-
-
-
+    public ResidentDTO findByEmail(String email) throws ServiceException {
+        Optional<Resident> optionalResident = Optional.ofNullable(repository.findByEmail(email));
+        if (optionalResident.isPresent()) {
+            Resident resident = optionalResident.get();
+            return new ResidentDTO(resident);
+        } else {
+            throw new ResidentNotFoundException("Resident not found with Email: " + email);
+        }
+    }
 
 
 

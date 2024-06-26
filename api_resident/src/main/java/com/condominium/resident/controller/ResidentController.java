@@ -51,8 +51,8 @@ public class ResidentController {
     @GetMapping(value="/getId/{id}")
     public ResponseEntity<ResidentDTO> findById(@PathVariable String id) {
         try {
-            ResidentDTO client = service.findById(id);
-            return ResponseEntity.ok(client);
+            ResidentDTO resident = service.findById(id);
+            return ResponseEntity.ok(resident);
         } catch (ServiceException e) {
             return ResponseEntity.notFound().build();
         }
@@ -61,8 +61,8 @@ public class ResidentController {
     @PutMapping(value="/{id}")
     public ResponseEntity<ResidentDTO> update(@PathVariable String id, @Valid @RequestBody ResidentDTO clientDTO) {
         try {
-            ResidentDTO updatedClient = service.update(id, clientDTO);
-            return ResponseEntity.ok(updatedClient);
+            ResidentDTO updatedResident = service.update(id, clientDTO);
+            return ResponseEntity.ok(updatedResident);
         } catch (ServiceException e) {
             return ResponseEntity.notFound().build();
         }
@@ -82,4 +82,17 @@ public class ResidentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao processar a resposta JSON.");
         }
     }
+
+    @GetMapping(value="/getEmail/{email}")
+    public ResponseEntity<ResidentDTO> findByEmail(@PathVariable String email) {
+        try {
+            ResidentDTO resident = service.findByEmail(email);
+            return ResponseEntity.ok(resident);
+        } catch (ServiceException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
 }

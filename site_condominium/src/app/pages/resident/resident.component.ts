@@ -1,63 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import { Resident } from './model/resident';
 import { ResidentService } from './service/resident.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-resident',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './resident.component.html',
-  styleUrl: './resident.component.scss'
+  styleUrls: ['./resident.component.scss']
 })
 export class ResidentComponent implements OnInit {
-  formTouched: any;
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-
-  residents: Resident[] = []
-
-  resident: Resident | null = null;
-
-  imagePreview: string | ArrayBuffer | null = null;
+  resident: Resident | undefined;
 
   constructor(
-    private service: ResidentService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private residentService: ResidentService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      const id = params['id'];
-      this.getResident(id);
-    });
+    this.loadResident();
   }
 
-  getResident(id: string): void {
-    this.service.get(id).subscribe(
-      (response: Resident) => {
-        console.log('Residente encontrado:', response);
-        this.resident = response;
-      },
-      (error) => {
-        console.error('Erro ao buscar residente:', error);
-      }
-    );
+  loadResident(): void {
+    const residentId = localStorage.getItem('loggedInUserId');
+    if (residentId) {
+      this.residentService.get(residentId).subscribe(
+        (data: Resident) => {
+          this.resident = data;
+        },
+        error => {
+          console.error('Error loading resident data', error);
+        }
+      );
+    } else {
+      console.error('No resident ID found in localStorage');
+    }
   }
 
-  trackByResidentId(index: number, resident: any): number {
-    return resident.id;
+  updateResident(): void {
+    if (this.resident) {
+      console.log('Dados do residente a serem enviados:', this.resident);
+      this.residentService.update(this.resident.id, this.resident).subscribe(
+        (data: Resident) => {
+          console.log('Residente atualizado com sucesso', data);
+        },
+        error => {
+          console.error('Erro ao atualizar residente', error);
+        }
+      );
+    } else {
+      console.error('Não há dados do residente para atualizar');
+    }
   }
 
 
-  cancelUpdate(): void {
-    this.router.navigate(['/lista-residentes']);
+  onSubmit(): void {
+    this.updateResident();
   }
+
 
 }
-export { ResidentService };
+
+
 
