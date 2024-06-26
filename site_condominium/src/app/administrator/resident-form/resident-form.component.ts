@@ -15,9 +15,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./resident-form.component.scss']
 })
 export class ResidentFormComponent implements OnInit {
+
 formTouched: any;
 onSubmit() {
-throw new Error('Method not implemented.');
+
+  throw new Error('Method not implemented.');
 }
 
 residents: Resident[] = []
@@ -55,6 +57,29 @@ residents: Resident[] = []
     return resident.id;
   }
 
+  editDataResident(resident: Resident): void {
+    console.log('Editing boleto for resident:', resident);
+
+    // Remover o campo `orderItemsAsString` antes de enviar a requisição
+    const residentToUpdate = { ...resident };
+    delete (residentToUpdate as any).orderItemsAsString;
+
+    this.service.update(resident.id, residentToUpdate).subscribe(
+      (updatedResident) => {
+        console.log('Resident updated successfully:', updatedResident);
+        // Aqui você pode adicionar lógica para exibir uma mensagem de sucesso ou navegar para outra página
+      },
+      (error) => {
+        console.error('Error updating resident:', error);
+        // Aqui você pode adicionar lógica para exibir uma mensagem de erro
+      }
+    );
+  }
+
+  returnRoute() {
+
+    this.router.navigate(['resident_data']);
+  }
 
   cancelUpdate(): void {
     this.router.navigate(['/lista-residentes']);
