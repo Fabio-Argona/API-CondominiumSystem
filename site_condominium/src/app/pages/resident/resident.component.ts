@@ -14,10 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./resident.component.scss']
 })
 export class ResidentComponent implements OnInit {
-  resident: Resident | undefined;
+  resident: Resident | null = null;
 
   constructor(
-    private residentService: ResidentService,
+    private service: ResidentService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -29,7 +29,7 @@ export class ResidentComponent implements OnInit {
   loadResident(): void {
     const residentId = localStorage.getItem('loggedInUserId');
     if (residentId) {
-      this.residentService.get(residentId).subscribe(
+      this.service.get(residentId).subscribe(
         (data: Resident) => {
           this.resident = data;
         },
@@ -45,7 +45,7 @@ export class ResidentComponent implements OnInit {
   updateResident(): void {
     if (this.resident) {
       console.log('Dados do residente a serem enviados:', this.resident);
-      this.residentService.update(this.resident.id, this.resident).subscribe(
+      this.service.update(this.resident.id, this.resident).subscribe(
         (data: Resident) => {
           console.log('Residente atualizado com sucesso', data);
         },
@@ -58,6 +58,30 @@ export class ResidentComponent implements OnInit {
     }
   }
 
+  isPaymentDateAfterToday(paymentDate: string): boolean {
+    const today = new Date();
+    const dateForPayment = new Date(paymentDate);
+    return dateForPayment > today;
+  }
+
+  editDataResident(resident: Resident): void {
+    console.log('Editing boleto for resident:', resident);
+
+    // Remover o campo `orderItemsAsString` antes de enviar a requisição
+    const residentToUpdate = { ...resident };
+    delete (residentToUpdate as any).orderItemsAsString;
+
+    this.service.update(resident.id, residentToUpdate).subscribe(
+      (updatedResident) => {
+        console.log('Resident updated successfully:', updatedResident);
+        // Aqui você pode adicionar lógica para exibir uma mensagem de sucesso ou navegar para outra página
+      },
+      (error) => {
+        console.error('Error updating resident:', error);
+        // Aqui você pode adicionar lógica para exibir uma mensagem de erro
+      }
+    );
+  }
 
   onSubmit(): void {
     this.updateResident();

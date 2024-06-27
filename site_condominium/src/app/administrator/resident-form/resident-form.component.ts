@@ -10,11 +10,14 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-resident-form',
   standalone: true,
-  imports: [ CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './resident-form.component.html',
   styleUrls: ['./resident-form.component.scss']
 })
 export class ResidentFormComponent implements OnInit {
+CreatePayment() {
+this.router.navigate(['/payment'])
+}
 
 formTouched: any;
 onSubmit() {
@@ -78,7 +81,7 @@ residents: Resident[] = []
 
   returnRoute() {
 
-    this.router.navigate(['resident_data']);
+    this.router.navigate(['/owner']);
   }
 
   cancelUpdate(): void {

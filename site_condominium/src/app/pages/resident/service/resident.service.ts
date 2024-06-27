@@ -37,4 +37,8 @@ export class ResidentService {
     return this.http.get<Resident>(`${this.baseUrl}/getEmail/${email}`);
   }
 
+  getAllResidents(): Observable<Resident[]> {
+    return this.http.get<Resident[]>(`${this.baseUrl}`);
+  }
+
 }
