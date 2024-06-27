@@ -1,6 +1,6 @@
 <!-- component -->
 <div class="content">
-  <nav id="header" class="w-full z-30 fixed top-0 py-1 bg-zinc-100 bg-opacity-50 shadow-lg border-b border-blue-400">
+  <nav id="header" class="w-full z-30 fixed top-0 py-1 bg-zinc-100 bg-opacity-90 shadow-lg border-b border-blue-400">
     <div class="w-full flex items-center justify-between mt-0 px-6 py-2">
       <label for="menu-toggle" class="cursor-pointer md:hidden block">
         <svg class="fill-current text-zinc-600" width="20" height="20" viewBox="0 0 20 20">
@@ -38,12 +38,15 @@
 
                 Bem-vindo,
               </span>
-              {{ loggedInUserName }}
+              <span class="text-blue-500">
+                {{ loggedInUserName }}
+
+              </span>
             </p>
             <button
               (click)="logout()"
-              class="bg-transparent text-gray-800 p-2 rounded border border-gray-300 mr-4 hover:bg-gray-100 hover:text-gray-700"
-              routerLinkActive="active"><svg class="h-6 w-6 text-zinc-600"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />  <polyline points="16 17 21 12 16 7" />  <line x1="21" y1="12" x2="9" y2="12" /></svg> </button>
+              class="bg-transparent text-gray-800 p-2 rounded border border-red-500 mr-4 hover:bg-gray-100 hover:text-gray-700"
+              routerLinkActive="active"><svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg></button>
           </div>
           <div *ngIf="!loggedInUserName">
             <button

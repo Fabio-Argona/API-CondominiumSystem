@@ -1,28 +1,32 @@
 import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
-import { Resident_ownerService } from './service/resident_owner.service';
 import { ResidentService } from '../../pages/resident/service/resident.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {  Resident } from '../../pages/resident/model/resident'
+import { Resident } from '../../pages/resident/model/resident';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
+import { SearchfilterPipe } from './service/searchfilter.pipe';
 
 @Component({
   selector: 'app-owners',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive],
+  imports: [RouterLink, CommonModule, RouterLinkActive, NgxPaginationModule, FormsModule, SearchfilterPipe],
   templateUrl: './owners.component.html',
   styleUrls: ['./owners.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class OwnersComponent implements OnInit {
 
-  constructor(private resident_ownerService: Resident_ownerService) {}
+  residents: Resident[] = [];
+  searchValue: string = '';
+  totalLength: number = 0;
+  page: number = 1;
+
+  constructor(private router: Router) {}
 
   private residentService = inject(ResidentService);
 
-  residents: Resident[] = [];
-
-
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.loadAll();
   }
 
@@ -31,27 +35,30 @@ export class OwnersComponent implements OnInit {
   }
 
   getColorClass(index: number): string {
-    // Lógica para determinar a classe de cor
     return index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200';
   }
 
-  loadAll(){
+  loadAll(): void {
     this.residentService.list()
       .subscribe(residents => {
         this.residents = residents;
-      })
+        this.totalLength = residents.length; // ou definir o total real dos itens se disponível na resposta da API
+      });
   }
 
-  deleteBoleto(resident: Resident) {
+  CreatePayment() {
+    this.router.navigate(['/payment'])
+    }
+
+  deleteResident(resident: Resident): void {
     this.residentService.delete(resident.id)
       .subscribe(() => {
         this.loadAll();
       });
   }
 
-  editBoleto(resident: any): void {
-    console.log('Editing boleto for resident:', resident);
-    // Adicione a lógica para editar o boleto aqui
+  editResident(resident: Resident): void {
+    console.log('Editing resident:', resident);
+    // Adicione a lógica para editar o residente aqui
   }
-
 }

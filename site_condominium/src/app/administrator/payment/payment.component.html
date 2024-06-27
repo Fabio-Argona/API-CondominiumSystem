@@ -1,24 +1,165 @@
 <body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
+  <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
+    <div class="w-full px-6 py-6 mx-auto mt-8">
+      <div class="flex">
+        <div class="flex w-full justify-between">
+          <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg> Área do Administrador - Adicionar Boleto
+          </h1>
+        </div>
+      </div>
+
+      <!-- Seletor de residente -->
+      <div class="mb-4">
+        <label for="residentSelector" class="block text-sm font-medium text-gray-700 m-3 mb-1">Selecione um Residente</label>
+        <select id="residentSelector" name="residentSelector" [(ngModel)]="selectedResident" class="border border-gray-300 p-2 rounded-lg w-full">
+          <option *ngFor="let resident of residents" [ngValue]="resident">{{ resident.nomeCompleto }}</option>
+        </select>
+      </div>
+
+      <!-- Dados do residente selecionado -->
+      <div *ngIf="selectedResident" class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 md:w-7/12 md:flex-none">
+          <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+            <div class="flex-auto p-4 pt-6">
+              <form (ngSubmit)="addBoleto()">
+                <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Incluir Boleto</h6>
+                <div class="relative flex justify-between px-4 py-2 mb-2 bg-white border rounded-xl">
+                  <div class="w-full">
+                    <div class="flex items-center mb-4">
+                      <label for="barcodeNumber" class="leading-normal text-slate-700 text-sm bg-clip-text">Código boleto: </label>
+                      <input id="barcodeNumber" [(ngModel)]="newBoleto.barcodeNumber" name="barcodeNumber" type="text" class="ml-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text" required>
+
+                      <label for="valuePayment" class="leading-normal text-slate-700 text-sm bg-clip-text">Valor boleto: </label>
+                      <input id="valuePayment" [(ngModel)]="newBoleto.valuePayment" name="valuePayment" type="text" class="ml-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text" required>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                      <label for="statusPayment" class="leading-normal text-slate-700 text-sm bg-clip-text">Status: </label>
+                      <input id="statusPayment" [(ngModel)]="newBoleto.statusPayment" name="statusPayment" type="text" class="ml-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text" required>
+
+                      <label for="dateForPayment" class="leading-normal text-slate-700 text-sm bg-clip-text">Data Pagamento: </label>
+                      <input id="dateForPayment" [(ngModel)]="newBoleto.dateForPayment" name="dateForPayment" type="text" class="ml-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text" required>
+                    </div>
+
+                    <div class="flex justify-end">
+                      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Adicionar Boleto</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Listar boletos -->
+              <div class="mb-4">
+                <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Boletos Adicionados</h6>
+                <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                  <li *ngFor="let payment of selectedResident.residentPayment; trackBy: trackByPaymentId" class="relative flex justify-between px-4 py-2 mb-2 bg-white border rounded-xl">
+                    <div>
+                      <div class="flex items-center mb-1">
+                        <h6 class="leading-normal text-slate-700 text-sm bg-clip-text">Valor boleto:</h6>
+                        <p class="ml-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
+                          {{ payment.valuePayment }}</p>
+                      </div>
+                      <p class="leading-normal text-slate-700 text-sm bg-clip-text">Código boleto: {{ payment.barcodeNumber }}</p>
+                    </div>
+                    <div class="flex items-center">
+                      <div class="mr-2">
+                        <button >
+                          <!-- <button (click)="deletePayment(payment)"></button> -->
+                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                            <line x1="12" y1="11" x2="12" y2="17" />
+                            <polyline points="9 14 12 17 15 14" />
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="flex flex-col">
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Botão de Salvar -->
+              <div class="flex justify-end">
+                <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded-lg" (click)="editDataResident(selectedResident)">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pt-4">
+    <div class="w-full px-6 mx-auto">
+      <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+        <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+          <div class="leading-normal text-center text-sm text-slate-500 lg:text-left">
+            © feito com <i class="fa fa-heart"></i> por <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Creative Tim</a> para uma web melhor.
+          </div>
+        </div>
+        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
+          <ul class="flex justify-center pl-0 mb-0 list-none lg:justify-end">
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Creative Tim</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/presentation" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Sobre Nós</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://creative-tim.com/blog" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.creative-tim.com/license" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Licenças</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
 
   <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
     <div class="w-full px-6 py-6 mx-auto mt-8">
       <div class="flex">
-
         <div class="flex w-full justify-between">
-             <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
-               routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg class="h-6 w-6 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-               </svg>
-                Area do Administrador - Editar Residente</h1>
-            <div>
-
-
-            <div>
-              <button (click)="CreatePayment()">
-                <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />  <line x1="12" y1="11" x2="12" y2="17" />  <line x1="9" y1="14" x2="15" y2="14" /></svg>
-                Boleto</button>
-            </div>
-          </div>
+          <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
+            routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg class="h-6 w-6 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg> Area do Administrador - Adicionar Boleto
+          </h1>
         </div>
       </div>
     </div>
@@ -36,6 +177,7 @@
         </div>
       </div>
       <div class="flex flex-wrap -mx-3">
+
         <div class="w-full max-w-full px-3 mt-6 md:w-7/12 md:flex-none">
           <div
             class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
@@ -255,4 +397,4 @@
       </footer>
     </div>
   </main>
-</body>
+</body> -->
