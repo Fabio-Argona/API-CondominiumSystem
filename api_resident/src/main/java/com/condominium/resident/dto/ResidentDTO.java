@@ -2,13 +2,10 @@ package com.condominium.resident.dto;
 
 import com.condominium.resident.model.Resident;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,8 +18,6 @@ public class ResidentDTO implements Serializable {
     private String nomeCompleto;
 
     private String dataNascimento;
-
-//    private List<ResidentPaymentDTO> residentPayment;
 
     private String genero;
 
