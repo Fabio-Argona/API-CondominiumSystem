@@ -80,13 +80,13 @@ export class PaymentComponent implements OnInit {
 
   editDataResident(resident: Resident): void {
     const residentToUpdate = { ...resident };
-    delete (residentToUpdate as any).orderItemsAsString;
+    // delete (residentToUpdate as any).orderItemsAsString;
 
     this.service.update(resident.id, residentToUpdate).subscribe(
       (updatedResident) => {
         console.log('Residente atualizado com sucesso:', updatedResident);
         // Atualizando o objeto residente local com os dados retornados, se necessário
-        this.selectedResident = updatedResident;
+         this.selectedResident = updatedResident;
       },
       (error) => {
         console.error('Erro ao atualizar residente:', error);

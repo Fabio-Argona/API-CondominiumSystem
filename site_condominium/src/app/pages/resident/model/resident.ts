@@ -33,7 +33,6 @@ export interface ResidentPayment {
   valuePayment: number;
   statusPayment: string;
   barcodeNumber: number;
-  price: number;
   barcodeImage: number;
 }
 
