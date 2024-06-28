@@ -3,7 +3,6 @@ export interface Resident {
   id:                        string;
   nomeCompleto:              string;
   dataNascimento:            string;
-  residentPayment: ResidentPayment[];
   genero:                    string;
   estadoCivil:               string;
   email:                     string;
@@ -27,12 +26,4 @@ export interface Resident {
 
 }
 
-
-export interface ResidentPayment {
-  dateForPayment: string;
-  valuePayment: number;
-  statusPayment: string;
-  barcodeNumber: number;
-  barcodeImage: number;
-}
 

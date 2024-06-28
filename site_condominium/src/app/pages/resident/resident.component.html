@@ -111,8 +111,8 @@
             </div>
             <div class="flex-auto p-4 pt-6">
               <h6 class="mb-4 font-bold leading-tight uppercase text-xs text-slate-500">Em Aberto</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngFor="let payment of resident?.residentPayment">
-                <li *ngIf="payment.statusPayment === 'Aberto'"
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg" >
+                <li
                   class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-green-100">
                   <div>
                     <div class="flex flex-row">
@@ -122,11 +122,11 @@
                       </div>
                       <p
                         class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
-                        {{ payment.valuePayment.toFixed(2) }}
+                        5.00
                       </p>
                     </div>
                     <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
-                      {{payment.barcodeNumber}}</p>
+                      12345 12345 12345 12345</p>
                   </div>
                   <div>
                     <div class="flex items-center">
@@ -142,8 +142,8 @@
                         </button>
                       </div>
                       <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">Pendente</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: 10/06/2024</span>
                       </div>
                     </div>
                     <div class="flex flex-col items-center justify-center">
@@ -152,8 +152,8 @@
                 </li>
               </ul>
               <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Vencido(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngFor="let payment of resident?.residentPayment">
-                <li *ngIf="payment.statusPayment === 'Vencido'"
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg" >
+                <li
                   class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-red-100">
                   <div>
                     <div class="flex flex-row">
@@ -163,11 +163,11 @@
                       </div>
                       <p
                         class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
-                        {{ payment.valuePayment.toFixed(2) }}
+                        5.00
                       </p>
                     </div>
                     <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
-                      {{payment.barcodeNumber}}</p>
+                      12345 12345 12345 12345</p>
                   </div>
                   <div>
                     <div class="flex items-center">
@@ -183,8 +183,8 @@
                         </button>
                       </div>
                       <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">Aberto</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: 10/08/2023</span>
                       </div>
                     </div>
                     <div class="flex flex-col items-center justify-center">
@@ -193,8 +193,8 @@
                 </li>
               </ul>
               <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Pago(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg" *ngFor="let payment of resident?.residentPayment">
-                <li *ngIf="payment.statusPayment === 'Efetuado'"
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg" >
+                <li
                   class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-blue-50">
                   <div>
                     <div class="flex flex-row">
@@ -204,11 +204,11 @@
                       </div>
                       <p
                         class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-lime-600 to-lime-400 text-sm bg-clip-text">
-                        {{ payment.valuePayment.toFixed(2) }}
+                        5.00
                       </p>
                     </div>
                     <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
-                      {{payment.barcodeNumber}}</p>
+                      12345 12345 12345 12345</p>
                   </div>
                   <div>
                     <div class="flex items-center">
@@ -224,8 +224,8 @@
                         </button>
                       </div>
                       <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment.statusPayment }}</h6>
-                        <span class="leading-tight text-xs">Data Pagamento: {{ payment.dateForPayment }}</span>
+                        <h6 class="mb-1 leading-normal text-sm text-slate-700">Pendente</h6>
+                        <span class="leading-tight text-xs">Data Pagamento: 10/06/2024</span>
                       </div>
                     </div>
                     <div class="flex flex-col items-center justify-center">

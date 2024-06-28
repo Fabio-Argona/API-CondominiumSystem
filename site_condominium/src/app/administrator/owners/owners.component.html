@@ -13,7 +13,7 @@
             <h2 class="text-base "> Listagem de residentes</h2>
           </div>
           <div>
-            <button (click)="CreatePayment()">
+            <button >
               <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />  <line x1="12" y1="11" x2="12" y2="17" />  <line x1="9" y1="14" x2="15" y2="14" /></svg>
               Boleto</button>
           </div>
@@ -36,18 +36,18 @@
           </thead>
           <tbody>
             <ng-container *ngFor="let resident of residents | searchfilter:searchValue | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength }; let i = index; trackBy: trackByResidentId">
-              <tr class="" [ngClass]="getColorClass(i)">
+              <tr class="" >
                 <td class="p-0 border-b h-4">Casa 0{{ resident.numeroMoradoresUnidade }}</td>
                 <td class="p-0 border-b h-auto">
                   <div class="space-y-2">
-                    <ng-container *ngFor="let payment of resident.residentPayment">
-                      <div>{{ payment.statusPayment }}</div>
+                    <ng-container >
+                      <div></div>
                     </ng-container>
                   </div>
                 </td>
                 <td class="p-0 border-b h-12">{{ resident.nomeCompleto }}</td>
                 <td class="p-0 border-b h-12 text-right">
-                  <a [routerLink]="['/resident-form', resident.id]" (click)="editResident(resident)"
+                  <a [routerLink]="['/resident-form', resident.id]"
                     class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700">
                     Editar
                   </a>
