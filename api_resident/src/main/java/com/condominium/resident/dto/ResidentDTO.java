@@ -22,7 +22,7 @@ public class ResidentDTO implements Serializable {
 
     private String dataNascimento;
 
-    private List<ResidentPaymentDTO> residentPayment;
+//    private List<ResidentPaymentDTO> residentPayment;
 
     private String genero;
 
@@ -74,12 +74,6 @@ public class ResidentDTO implements Serializable {
     public ResidentDTO(Resident entity) {
         BeanUtils.copyProperties(entity, this);
     }
-
-    public String getOrderItemsAsString() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(residentPayment);
-    }
-
 
     @Setter
     @Getter

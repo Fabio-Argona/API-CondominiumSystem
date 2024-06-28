@@ -23,7 +23,6 @@ public class Resident implements Serializable {
     private String id;
     private String nomeCompleto;
     private String dataNascimento;
-    private List<ResidentPaymentDTO> residentPayment;
     private String genero;
     private String estadoCivil;
     @Indexed(unique = true)
@@ -51,14 +50,6 @@ public class Resident implements Serializable {
     public Resident(ResidentDTO dto) {
         this.nomeCompleto = dto.getNomeCompleto();
         this.dataNascimento = dto.getDataNascimento();
-        this.residentPayment = dto.getResidentPayment().stream()
-                .map(paymentDTO -> new ResidentPaymentDTO(
-                        paymentDTO.getDateForPayment(),
-                        paymentDTO.getValuePayment(),
-                        paymentDTO.getStatusPayment(),
-                        paymentDTO.getBarcodeNumber(),
-                        paymentDTO.getBarcodeImage()))
-                .toList();
         this.genero = dto.getGenero();
         this.estadoCivil = dto.getEstadoCivil();
         this.email = dto.getEmail();
@@ -82,7 +73,6 @@ public class Resident implements Serializable {
         this.created = dto.getCreated();
         this.updated = dto.getUpdated();
     }
-
     public Resident() {
         super();
     }
