@@ -1,7 +1,6 @@
 package com.condominium.resident.model;
 
 import com.condominium.resident.dto.ResidentDTO;
-import com.condominium.resident.dto.ResidentPaymentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +10,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
