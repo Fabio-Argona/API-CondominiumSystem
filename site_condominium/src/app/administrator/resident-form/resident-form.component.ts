@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Resident } from '../../pages/resident/model/resident';
 
 import { FormsModule } from '@angular/forms';
+import { Payment } from '../payment/model/payment';
+import { PaymentService } from '../payment/service/payment.service';
 
 
 @Component({
@@ -15,8 +17,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./resident-form.component.scss']
 })
 export class ResidentFormComponent implements OnInit {
+
+payments: Payment[] = [];
+
 CreatePayment() {
-this.router.navigate(['/payment'])
+  this.router.navigate(['/payment'])
 }
 
 formTouched: any;
@@ -26,18 +31,23 @@ onSubmit() {
 }
 
 residents: Resident[] = []
-
-  resident: Resident | null = null;
-
-  imagePreview: string | ArrayBuffer | null = null;
+resident: Resident | null = null;
+today: Date = new Date();
+imagePreview: string | ArrayBuffer | null = null;
 
   constructor(
     private service: ResidentService,
+    private paymentService: PaymentService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const id = params['id'];
+      this.getResident(id);
+      this.loadPayments(id); // Corrigido para passar o id do residente para loadPayments
+    });
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       this.getResident(id);
@@ -56,11 +66,27 @@ residents: Resident[] = []
     );
   }
 
+  loadPayments(idResident: string): void {
+    this.paymentService.getResidentPayment(idResident).subscribe(
+      (data: Payment[]) => {
+        console.log('Dados do pagamento recebidos do banco:', data);
+        this.payments = data;  // Atribui o array de pagamentos à variável 'payments'
+      },
+      error => {
+        console.error('Erro ao carregar dados do pagamento', error);
+      }
+    );
+  }
+
+  transformStringToDate(dateString: string): Date {
+    return new Date(dateString);
+  }
+
   trackByResidentId(index: number, resident: any): number {
     return resident.id;
   }
 
- 
+
   returnRoute() {
 
     this.router.navigate(['/owner']);
