@@ -5,6 +5,7 @@ import com.condominium.resident.exceptions.ResidentNotFoundException;
 import com.condominium.resident.exceptions.ServiceException;
 import com.condominium.resident.model.Resident;
 import com.condominium.resident.repositiry.ResidentRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

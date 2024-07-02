@@ -1,4 +1,4 @@
-package com.payment.payment.exceptions;
+package com.condominium.payment.exceptions;
 
 public class ServiceException extends Exception {
     public ServiceException(String message) {

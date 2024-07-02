@@ -4,26 +4,31 @@ import { ResidentService } from './service/resident.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { PaymentService } from '../../administrator/payment/service/payment.service';
+import { Payment } from '../../administrator/payment/model/payment';
 
 @Component({
   selector: 'app-resident',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './resident.component.html',
   styleUrls: ['./resident.component.scss']
 })
 export class ResidentComponent implements OnInit {
   resident: Resident | null = null;
+  payment: Payment[] = [];
+  payments: Payment[] = [];
 
   constructor(
     private service: ResidentService,
+    private paymentService: PaymentService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadResident();
+    this.loadPayments(); // Carrega os dados do pagamento ao inicializar o componente
   }
 
   loadResident(): void {
@@ -34,11 +39,29 @@ export class ResidentComponent implements OnInit {
           this.resident = data;
         },
         error => {
-          console.error('Error loading resident data', error);
+          console.error('Erro ao carregar dados do residente', error);
         }
       );
     } else {
-      console.error('No resident ID found in localStorage');
+      console.error('Nenhum ID de residente encontrado no localStorage');
+    }
+  }
+
+
+  loadPayments(): void {
+    const residentId = localStorage.getItem('loggedInUserId');
+    if (residentId) {
+      this.paymentService.getResidentPayment(residentId).subscribe(
+        (data: Payment[]) => {  // 'data' é do tipo Payment[]
+          console.log('Dados do pagamento recebidos do banco:', data);
+          this.payments = data;  // Atribui o array de pagamentos à variável 'payments'
+        },
+        error => {
+          console.error('Erro ao carregar dados do pagamento', error);
+        }
+      );
+    } else {
+      console.error('Nenhum ID de residente encontrado no localStorage para carregar pagamento');
     }
   }
 
@@ -58,27 +81,18 @@ export class ResidentComponent implements OnInit {
     }
   }
 
-  isPaymentDateAfterToday(paymentDate: string): boolean {
-    const today = new Date();
-    const dateForPayment = new Date(paymentDate);
-    return dateForPayment > today;
-  }
-
   editDataResident(resident: Resident): void {
-    console.log('Editing boleto for resident:', resident);
+    console.log('Editando dados do residente:', resident);
 
-    // Remover o campo `orderItemsAsString` antes de enviar a requisição
     const residentToUpdate = { ...resident };
     delete (residentToUpdate as any).orderItemsAsString;
 
     this.service.update(resident.id, residentToUpdate).subscribe(
       (updatedResident) => {
-        console.log('Resident updated successfully:', updatedResident);
-        // Aqui você pode adicionar lógica para exibir uma mensagem de sucesso ou navegar para outra página
+        console.log('Residente atualizado com sucesso:', updatedResident);
       },
       (error) => {
-        console.error('Error updating resident:', error);
-        // Aqui você pode adicionar lógica para exibir uma mensagem de erro
+        console.error('Erro ao atualizar residente:', error);
       }
     );
   }
@@ -86,9 +100,5 @@ export class ResidentComponent implements OnInit {
   onSubmit(): void {
     this.updateResident();
   }
-
-
 }
-
-
 
