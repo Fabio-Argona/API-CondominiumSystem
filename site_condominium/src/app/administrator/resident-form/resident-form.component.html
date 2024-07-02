@@ -128,89 +128,90 @@
               </div>
             </div>
             <div class="flex-auto p-4">
-              <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Em Aberto(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg" >
-                <li
-                  class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
-                  <div>
-                    <div class="flex flex-row">
-                      <div class="">
-                        <h6 class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
-                          Valor boleto:</h6>
+              <h6 class="mb-4 font-bold leading-tight uppercase text-xs text-slate-500">Em Aberto</h6>
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                <ng-container *ngFor="let payment of payments">
+                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-green-100" *ngIf="transformStringToDate(payment.datePayment) > today">
+                    <div>
+                      <div class="flex flex-row">
+                        <div>
+                          <h6 class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
+                            Valor boleto:
+                          </h6>
+                        </div>
+                        <p class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
+                          {{ payment?.valuePayment }}
+                        </p>
                       </div>
-                      <p
-                        class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
-
+                      <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
+                        Numero codigo: {{ payment?.numberPayment }}
                       </p>
                     </div>
-                    <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
-
-                  </div>
-                  <div >
-                    <div class="flex items-center">
-                      <div class="flex flex-col">
-                        <button class="mr-2">
-                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                            <line x1="12" y1="11" x2="12" y2="17" />
-                            <polyline points="9 14 12 17 15 14" /></svg>
-                        </button>
-                      </div>
-                      <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700"></h6>
-                        <span class="leading-tight text-xs">Data Pagamento: </span>
+                    <div>
+                      <div class="flex items-center">
+                        <div class="flex flex-col">
+                          <button class="mr-2">
+                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" />
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                              <line x1="12" y1="11" x2="12" y2="17" />
+                              <polyline points="9 14 12 17 15 14" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="flex flex-col">
+                          <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment?.statusPayment }}</h6>
+                          <span class="leading-tight text-xs">Data Pagamento: {{ payment?.datePayment }}</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center">
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                </ng-container>
               </ul>
-              <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Pago(s)</h6>
-              <ul class="flex flex-col pl-0 mb-0 rounded-lg" >
-                <li
-                  class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-xl">
-                  <div>
-                    <div class="flex flex-row">
-                      <div class="">
-                        <h6 class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
-                          Valor boleto:</h6>
-                      </div>
-                      <p
-                        class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
 
+              <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Vencido(s)</h6>
+                <ng-container *ngFor="let payment of payments">
+                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-red-100" *ngIf="transformStringToDate(payment.datePayment) <= today">
+                    <div>
+                      <div class="flex flex-row">
+                        <div>
+                          <h6 class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
+                            Valor boleto:
+                          </h6>
+                        </div>
+                        <p class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
+                          {{ payment?.valuePayment }}
+                        </p>
+                      </div>
+                      <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">
+                        Numero codigo: {{ payment?.numberPayment }}
                       </p>
                     </div>
-                    <p class="mb-1 leading-normal text-slate-700 text-sm bg-clip-text">Numero codigo:
-                     
-                  </div>
-                  <div >
-                    <div class="flex items-center">
-                      <div class="flex flex-col">
-                        <button class="mr-2">
-                          <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" />
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                            <line x1="12" y1="11" x2="12" y2="17" />
-                            <polyline points="9 14 12 17 15 14" /></svg>
-                        </button>
-                      </div>
-                      <div class="flex flex-col">
-                        <h6 class="mb-1 leading-normal text-sm text-slate-700"></h6>
-                        <span class="leading-tight text-xs">Data Pagamento: </span>
+                    <div>
+                      <div class="flex items-center">
+                        <div class="flex flex-col">
+                          <button class="mr-2">
+                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" />
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                              <line x1="12" y1="11" x2="12" y2="17" />
+                              <polyline points="9 14 12 17 15 14" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="flex flex-col">
+                          <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment?.statusPayment }}</h6>
+                          <span class="leading-tight text-xs">Data Pagamento: {{ payment?.datePayment }}</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center">
-                    </div>
-                  </div>
-
-                </li>
+                  </li>
+                </ng-container>
               </ul>
+            
             </div>
           </div>
         </div>
