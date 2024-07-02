@@ -18,6 +18,7 @@ export class ResidentComponent implements OnInit {
   resident: Resident | null = null;
   payment: Payment[] = [];
   payments: Payment[] = [];
+  today: Date = new Date();
 
   constructor(
     private service: ResidentService,
@@ -99,6 +100,10 @@ export class ResidentComponent implements OnInit {
 
   onSubmit(): void {
     this.updateResident();
+  }
+
+  transformStringToDate(dateString: string): Date {
+    return new Date(dateString);
   }
 }
 
