@@ -30,29 +30,29 @@
             <tr>
               <th class="text-start p-1 border-b-2 h-4">Unidade</th>
               <th class="text-start p-1 border-b-2 h-12">Morador</th>
-             
+              <th class="text-start p-1 border-b-2 h-4">email </th>
+              <th class="text-start p-1 border-b-2 h-4">Telefone / Celular </th>
+              <th class="text-start p-1 border-b-2 h-4">Documento </th>
+              <th></th>
               <th class="text-start p-1 border-b-2 h-12"></th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let resident of residents | searchfilter:searchValue | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength }; let i = index; trackBy: trackByResidentId">
               <tr class="" >
-                <td class="p-0 border-b h-4">Casa 0{{ resident.numeroMoradoresUnidade }}</td>
-                <td class="p-0 border-b h-auto">
-                  <div class="space-y-2">
-                    <ng-container >
-                      <div></div>
-                    </ng-container>
-                  </div>
-                </td>
+                <td class="p-0 border-b h-4">Casa 0{{ resident.unidade }}</td>
                 <td class="p-0 border-b h-12">{{ resident.nomeCompleto }}</td>
+                <td class="p-0 border-b h-4">{{ resident.email }}</td>
+                <td class="p-0 border-b h-4">{{ resident.telefone }}</td>
+                <td class="p-0 border-b h-4">{{ resident.cpf }}</td>
                 <td class="p-0 border-b h-12 text-right">
-                  <a [routerLink]="['/resident-form', resident.id]"
-                    class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700">
-                    Editar
+                  <a [routerLink]="['/resident-form', resident.id]"><svg class="h-6 w-6 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                  </svg>
+
                   </a>
                 </td>
-              </tr>
+              </tr>w
             </ng-container>
           </tbody>
         </table>
