@@ -52,7 +52,7 @@ public class ResidentService {
             Resident entity = optionalResident.get();
             entity.setNomeCompleto(residentDTO.getNomeCompleto());
             entity.setDataNascimento(residentDTO.getDataNascimento());
-            entity.setGenero(residentDTO.getGenero());
+            entity.setUser(residentDTO.getUser());
             entity.setEstadoCivil(residentDTO.getEstadoCivil());
             entity.setEmail(residentDTO.getEmail());
             entity.setTelefone(residentDTO.getTelefone());

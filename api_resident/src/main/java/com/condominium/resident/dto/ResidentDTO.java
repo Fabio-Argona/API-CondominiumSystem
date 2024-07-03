@@ -19,7 +19,7 @@ public class ResidentDTO implements Serializable {
 
     private String dataNascimento;
 
-    private String genero;
+    private String user;
 
     private String estadoCivil;
 

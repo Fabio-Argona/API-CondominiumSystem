@@ -21,7 +21,7 @@ public class Resident implements Serializable {
     private String id;
     private String nomeCompleto;
     private String dataNascimento;
-    private String genero;
+    private String user;
     private String estadoCivil;
     @Indexed(unique = true)
     private String email;
@@ -48,7 +48,7 @@ public class Resident implements Serializable {
     public Resident(ResidentDTO dto) {
         this.nomeCompleto = dto.getNomeCompleto();
         this.dataNascimento = dto.getDataNascimento();
-        this.genero = dto.getGenero();
+        this.user = dto.getUser();
         this.estadoCivil = dto.getEstadoCivil();
         this.email = dto.getEmail();
         this.telefone = dto.getTelefone();
