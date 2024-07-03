@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   statusOptions: string[] = ['Aberto', 'Pendente', 'Atrasado'];
 
   selectedResident: Resident | null = null;
-  selectedResidentId: string = ''; // Propriedade para armazenar o ID do residente selecionado
+  selectedResidentId: string = ''; 
   newBoleto: Payment = {
     id: '',
     idResident: '',
@@ -31,11 +31,11 @@ export class PaymentComponent implements OnInit {
     registryUser: '',
     numberPayment: '',
     valuePayment: '',
-    statusPayment: 'Aberto', // Inicializar com uma opção padrão se necessário
+    statusPayment: 'Aberto',
     datePayment: ''
   };
 
-  boletos: Payment[] = []; // Certifique-se de ajustar o tipo conforme seus dados
+  boletos: Payment[] = [];
 
   constructor(
     private service: ResidentService,
@@ -45,7 +45,7 @@ export class PaymentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedInUserName = localStorage.getItem('loggedInUserName') || ''; // Obtém o nome do usuário logado do armazenamento local
+    this.loggedInUserName = localStorage.getItem('loggedInUserName') || '';
 
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
@@ -59,7 +59,7 @@ export class PaymentComponent implements OnInit {
       (response: Resident) => {
         console.log('Residente encontrado:', response);
         this.selectedResident = response;
-        this.selectedResidentId = response.id; // Supondo que o ID do residente esteja em _id
+        this.selectedResidentId = response.id;
       },
       (error) => {
         console.error('Erro ao buscar residente:', error);
