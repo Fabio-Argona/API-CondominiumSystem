@@ -6,6 +6,7 @@ import { OwnersComponent } from './administrator/owners/owners.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ResidentFormComponent } from './administrator/resident-form/resident-form.component';
 import { PaymentComponent } from './administrator/payment/payment.component';
+import { OwnerUnitComponent } from './pages/owner-unit/owner-unit.component';
 
 export const routes: Routes = [
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'resident', component: ResidentComponent },
   { path: 'owner', component: OwnersComponent },
+  { path: 'owner-unit', component: OwnerUnitComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'resident-form/:id', component: ResidentFormComponent },
   { path: 'login', component: LoginComponent },

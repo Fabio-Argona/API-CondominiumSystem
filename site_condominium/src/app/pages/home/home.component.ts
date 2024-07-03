@@ -1,40 +1,43 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ResidentService } from '../resident/service/resident.service';
-import { Resident } from '../resident/model/resident';
+import { NewsService } from './service/news.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive],
+  imports: [RouterLink, CommonModule, RouterLinkActive,
+    FormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+
+
 })
 export class HomeComponent implements OnInit {
+  news: any[] = [];
+  query: string = 'litoral norte SP';
 
-  private residentService = inject(ResidentService);
+  constructor(private newsService: NewsService) {}
 
-  residents: Resident[] = [];
-
-
-  ngOnInit(): any {
-    this.loadAll();
+  ngOnInit(): void {
+    this.getNews();
   }
 
-  loadAll(){
-    this.residentService.list()
-      .subscribe(residents => {
-        this.residents = residents;
-      })
+  getNews(): void {
+    this.newsService.getNews(this.query).subscribe(
+      (data: any) => {
+        this.news = data.articles;
+      },
+      (error) => {
+        console.error('Erro ao buscar notícias', error);
+      }
+    );
   }
 
-  deleteBoleto(resident: Resident) {
-    this.residentService.delete(resident.id)
-      .subscribe(() => {
-        this.loadAll();
-      });
-  }
 
 
 

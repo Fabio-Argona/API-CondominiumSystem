@@ -29,7 +29,7 @@ export class ResidentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadResident();
-    this.loadPayments(); // Carrega os dados do pagamento ao inicializar o componente
+    this.loadPayments();
   }
 
   loadResident(): void {
