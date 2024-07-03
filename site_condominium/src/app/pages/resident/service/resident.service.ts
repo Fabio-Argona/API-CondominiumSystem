@@ -36,8 +36,16 @@ export class ResidentService {
     return this.http.get<Resident>(`${this.baseUrl}/getEmail/${email}`);
   }
 
-  getAllResidents(): Observable<Resident[]> {
-    return this.http.get<Resident[]>(`${this.baseUrl}`);
+  // getAllResidents(): Observable<Resident[]> {
+  //   return this.http.get<Resident[]>(`${this.baseUrl}`);
+  // }
+
+  private apiKey = 'a7118b7b41ab460e94db6c1d10c27436';
+  private apiUrl = 'https://newsapi.org/v2/everything';
+
+  getNews(query: string): Observable<any> {
+    const url = `${this.apiUrl}?q=${query}&apiKey=${this.apiKey}`;
+    return this.http.get<any>(url);
   }
 
 }
