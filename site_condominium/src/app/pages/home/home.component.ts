@@ -4,11 +4,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ResidentService } from '../resident/service/resident.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule, RouterLinkActive, FormsModule],
+  imports: [RouterLink, CommonModule, RouterLinkActive, FormsModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

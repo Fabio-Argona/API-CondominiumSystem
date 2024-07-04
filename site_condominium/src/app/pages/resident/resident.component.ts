@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../administrator/payment/service/payment.service';
 import { Payment } from '../../administrator/payment/model/payment';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-resident',
