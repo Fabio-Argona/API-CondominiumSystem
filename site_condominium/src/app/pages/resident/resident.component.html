@@ -45,8 +45,9 @@
                     <div class="mb-4 mr-3 w-1/2">
                       <label for="dataNascimento" class="block text-sm font-medium text-gray-700">Data
                         Nascimento</label>
-                      <input type="text" id="dataNascimento" name="dataNascimento" [(ngModel)]="resident.dataNascimento"
+                        <input type="date" id="dataNascimento" name="dataNascimento" [(ngModel)]="resident.dataNascimento"
                         class="border border-gray-300 p-2 rounded-lg w-full">
+
                     </div>
                     <div class="mb-4 w-1/2">
                       <label for="cpf" class="block text-sm font-medium text-gray-700">CPF</label>
@@ -62,7 +63,7 @@
                     </div>
                     <div class="mb-4 w-1/4 ">
                       <label for="telefone" class="block text-sm font-medium text-gray-700">Telefone</label>
-                      <input type="text" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
+                      <input type="cel" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
                         class="border border-gray-300 p-2 rounded-lg w-full" required mask="(00) 00000-0000">
                     </div>
                   </div>
@@ -85,9 +86,12 @@
                       class="border border-gray-300 p-2 rounded-lg w-full"></textarea>
                   </div>
                   <div class="text-right">
-                    <button type="submit"
-                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
-                      (click)="editDataResident(resident)">
+                    <button
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" (click)="returnRoute()">
+                      <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="8" y1="12" x2="16" y2="12" />  <line x1="8" y1="12" x2="12" y2="16" />  <line x1="8" y1="12" x2="12" y2="8" /></svg> Voltar
+                    </button>
+                    <button
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" (click)="editDataResident(resident)">
                       <svg class="h-6 w-6 text-lime-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
@@ -153,7 +157,7 @@
                         </div>
                         <div class="flex flex-col">
                           <h6 class="mb-1 leading-normal text-sm text-slate-700">{{ payment?.statusPayment }}</h6>
-                          <span class="leading-tight text-xs">Data Pagamento: {{ payment?.datePayment }}</span>
+                          <span class="leading-tight text-xs">Data Pagamento: {{ payment?.datePayment | date: 'dd/MM/yyyy' }}</span>
                         </div>
                       </div>
                     </div>

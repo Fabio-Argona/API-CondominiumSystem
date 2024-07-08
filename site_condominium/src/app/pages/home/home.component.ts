@@ -19,19 +19,6 @@ export class HomeComponent implements OnInit {
   today: Date = new Date();
   currentIndex: number = 1;
 
-
-  images: string[] = [
-    'https://unsplash.it/640/425?image=30',
-    'https://unsplash.it/640/425?image=40',
-    'https://unsplash.it/640/425?image=50',
-  ];
-
-  carouselItems = [
-    { src: 'https://unsplash.it/640/425?image=30' },
-    { src: 'https://unsplash.it/640/425?image=40' },
-    { src: 'https://unsplash.it/640/425?image=50' }
-  ];
-
   constructor(private residentService: ResidentService) {}
 
   ngOnInit(): void {
@@ -79,9 +66,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  forward(): void {
-    if (this.currentIndex < this.images.length) {
-      this.currentIndex += 1;
-    }
-  }
+
 }

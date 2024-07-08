@@ -1,0 +1,213 @@
+<body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
+
+  <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
+    <div class="w-full px-6 py-6 mx-auto mt-8">
+      <div class="flex">
+
+        <div class="flex w-full justify-between">
+          <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
+            routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg class="h-6 w-6 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            Area do Administrador - Editar Residente</h1>
+          <div>
+            <div>
+              <button >
+                <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />  <line x1="12" y1="11" x2="12" y2="17" />  <line x1="9" y1="14" x2="15" y2="14" /></svg>
+                Boleto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full">
+      <div class="flex flex-wrap -mx-3">
+        <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
+          <div class="flex flex-wrap -mx-3">
+            <div class="w-full max-w-full px-3 xl:w-1/2 xl:flex-none">
+              <div class="flex flex-wrap -mx-3">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full max-w-full px-3 lg:w-1/3 lg:flex-none">
+        </div>
+      </div>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full max-w-full px-3 mt-6 md:w-7/12 md:flex-none">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+            <div class="flex-auto p-4 pt-6">
+              <form *ngIf="resident">
+
+                <div>
+                  <div class="flex">
+                    <div class="mb-4 mr-2">
+                      <label for="unidade" class="block text-sm font-medium text-gray-700">Unidade</label>
+                      <input type="text" id="unidade" name="unidade" [ngModel]="resident.unidade"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 ml-1 w-4/5">
+                      <label for="nomeCompleto" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                      <input type="text" id="nomeCompleto" name="nomeCompleto" [(ngModel)]="resident.nomeCompleto"
+                        class="border border-gray-300 p-2 rounded-lg w-full" required>
+                    </div>
+                  </div>
+                  <div class="flex ">
+                    <div class="mb-4 mr-3 w-1/2">
+                      <label for="dataNascimento" class="block text-sm font-medium text-gray-700">Data
+                        Nascimento</label>
+                      <input type="date" id="dataNascimento" name="dataNascimento" [(ngModel)]="resident.dataNascimento"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 w-1/2">
+                      <label for="cpf" class="block text-sm font-medium text-gray-700">CPF</label>
+                      <input type="text" id="cpf" name="cpf" [(ngModel)]="resident.cpf"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-3 w-3/4">
+                      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                      <input type="email" id="email" name="email" [(ngModel)]="resident.email"
+                        class="border border-gray-300 p-2 rounded-lg w-full" required>
+                    </div>
+                    <div class="mb-4 w-1/4 ">
+                      <label for="telefone" class="block text-sm font-medium text-gray-700">Telefone</label>
+                      <input type="tel" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
+                        class="border border-gray-300 p-2 rounded-lg w-full" required mask="(00) 00000-0000">
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-3 w-1/2">
+                      <label for="modeloVeiculo" class="block text-sm font-medium text-gray-700">Modelo do
+                        Veículo</label>
+                      <input type="text" id="modeloVeiculo" name="modeloVeiculo" [(ngModel)]="resident.modeloVeiculo"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 w-1/2">
+                      <label for="corVeiculo" class="block text-sm font-medium text-gray-700">Cor do Veículo</label>
+                      <input type="text" id="corVeiculo" name="corVeiculo" [(ngModel)]="resident.corVeiculo"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="observacoes" class="block text-sm font-medium text-gray-700">Observação</label>
+                    <input type="areatext" id="observacoes" name="observacoes" [(ngModel)]="resident.observacoes"
+                      class="border border-gray-300 p-2 rounded-lg w-full">
+                  </div>
+                  <!-- <div class="text-right" >
+                    <button type="submit"
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" >
+                      <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="8" y1="12" x2="16" y2="12" />  <line x1="8" y1="12" x2="12" y2="16" />  <line x1="8" y1="12" x2="12" y2="8" /></svg> Voltar
+                    </button>
+                    <button type="submit"
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700">
+                      <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M12 20l4 -9l-4 -3l-4 3l4 9" />  <path d="M12 4l-4 9h8z" /></svg> Salvar</button>
+                  </div> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="w-full max-w-full px-3 mt-6 mb-12 md:w-5/12 md:flex-none">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+            <div class="flex-auto p-4 pt-6">
+              <form *ngIf="resident">
+
+                <div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-2 w-1/2">
+                      <label for="estadoCivil" class="block text-sm font-medium text-gray-700">Estado Civil</label>
+                      <select id="estadoCivil" name="estadoCivil" [(ngModel)]="resident.estadoCivil"
+                        class="border border-gray-300 p-2 rounded-lg w-full">
+                        <option *ngFor="let estado of estados" [ngValue]="estado">{{ estado }}</option>
+                      </select>
+                    </div>
+                    <div class="mb-4 ml-1 w-1/2">
+                      <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
+                      <input type="password" id="password" name="password" [(ngModel)]="resident.password"
+                        class="border border-gray-300 p-2 rounded-lg w-full" required>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-2 w-1/2">
+                      <label for="documentoIdentidade"
+                        class="block text-sm font-medium text-gray-700">Documento</label>
+                      <input type="text" id="documentoIdentidade" name="documentoIdentidade"
+                        [(ngModel)]="resident.documentoIdentidade" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 ml-1 w-1/2">
+                      <label for="vagaEstacionamento"
+                        class="block text-sm font-medium text-gray-700">Vaga</label>
+                      <input type="text" id="vagaEstacionamento" name="vagaEstacionamento"
+                        [(ngModel)]="resident.vagaEstacionamento" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-2 w-1/2">
+                      <label for="dataInicioResidencia"
+                        class="block text-sm font-medium text-gray-700">Data</label>
+                      <input type="date" id="dataInicioResidencia" name="dataInicioResidencia"
+                        [(ngModel)]="resident.dataInicioResidencia" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 ml-1 w-1/2">
+                      <label for="statusResidencia"
+                        class="block text-sm font-medium text-gray-700">Status</label>
+                      <input type="text" id="statusResidencia" name="statusResidencia"
+                        [(ngModel)]="resident.statusResidencia" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="mb-4 mr-2 w-1/2">
+                      <label for="preferenciasContato"
+                        class="block text-sm font-medium text-gray-700">Preferências</label>
+                      <input type="text" id="preferenciasContato" name="preferenciasContato"
+                        [(ngModel)]="resident.preferenciasContato" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 ml-1 w-1/2">
+                      <label for="placaVeiculo"
+                        class="block text-sm font-medium text-gray-700">Placa</label>
+                      <input type="text" id="placaVeiculo" name="placaVeiculo"
+                        [(ngModel)]="resident.placaVeiculo" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                    <div class="mb-4 ml-2">
+                      <label for="numeroMoradoresUnidade" class="block text-sm font-medium text-gray-700">Nº de
+                        Moradores</label>
+                      <input type="number" id="numeroMoradoresUnidade" name="numeroMoradoresUnidade"
+                        [(ngModel)]="resident.numeroMoradoresUnidade" class="border border-gray-300 p-2 rounded-lg w-full">
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <label for="enderecoCorrespondencia" class="block text-sm font-medium text-gray-700">Endereço</label>
+                    <input type="text" id="enderecoCorrespondencia" name="enderecoCorrespondencia"
+                      [(ngModel)]="resident.enderecoCorrespondencia" class="border border-gray-300 p-2 rounded-lg w-full">
+                  </div>
+                  <div class="mb-4">
+                    <label for="fotoUrl" class="block text-sm font-medium text-gray-700">Foto</label>
+                    <input type="url" id="fotoUrl" name="fotoUrl" [(ngModel)]="resident.fotoUrl"
+                      class="border border-gray-300 p-2 rounded-lg w-full">
+                  </div>
+                  <div class="text-right" >
+                    <button
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" routerLink="/owner" >
+                      <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="8" y1="12" x2="16" y2="12" />  <line x1="8" y1="12" x2="12" y2="16" />  <line x1="8" y1="12" x2="12" y2="8" /></svg> Voltar
+                    </button>
+                    <button
+                      class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700" (click)="createResident()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                      </svg>
+
+                       Adicionar Residente</button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

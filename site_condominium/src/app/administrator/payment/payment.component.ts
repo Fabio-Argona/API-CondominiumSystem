@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   statusOptions: string[] = ['Aberto', 'Pendente', 'Atrasado'];
 
   selectedResident: Resident | null = null;
-  selectedResidentId: string = ''; 
+  selectedResidentId: string = '';
   newBoleto: Payment = {
     id: '',
     idResident: '',
@@ -94,6 +94,9 @@ export class PaymentComponent implements OnInit {
     this.newBoleto.idResident = this.selectedResidentId;
     this.newBoleto.registryUser = this.loggedInUserName; // Atribuir o nome do usuário logado
 
+    // Antes de enviar para o MongoDB, certifique-se de que valuePayment está como string
+    this.newBoleto.valuePayment = this.newBoleto.valuePayment.toString(); // Garante que seja uma string
+
     this.paymentService.create(this.newBoleto).subscribe(
       (response: Payment) => {
         console.log('Boleto adicionado com sucesso!', response);
@@ -127,5 +130,20 @@ export class PaymentComponent implements OnInit {
   cancelUpdate(): void {
     this.router.navigate(['/lista-residentes']);
   }
+
+  formatValueToReal(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement) {
+      const valorDigitado = inputElement.value;
+      const parsedValue = parseFloat(valorDigitado.replace(',', '.')); // Substituir ',' por '.' antes de converter para float
+
+      if (!isNaN(parsedValue)) {
+        this.newBoleto.valuePayment = parsedValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      } else {
+        console.error('Valor digitado inválido!');
+      }
+    }
+  }
+
 
 }

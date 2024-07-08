@@ -2,40 +2,12 @@
   <main
     class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200  mx-40 mt-4">
     <!-- Navbar -->
-    <div class="w-full px-6 py-6 mx-auto mt-8">
+    <div class="w-full px-6 py-6 mx-8 mt-8">
 
-      <!-- component -->
-      <!-- This is an example component -->
-      <div class="max-w-2xl mx-auto">
-
-        <!-- component -->
-
-        <div class="w-3x4 mx-auto">
-          <div class="relative w-full overflow-hidden">
-            <div class="flex transition-transform duration-300 ease-in-out"
-              [style.transform]="'translateX(' + (-100 * (currentIndex - 1)) + '%)'">
-              <div *ngFor="let item of carouselItems" class="w-full flex-shrink-0">
-                <img [src]="item.src" alt="Carousel Image" class="w-full h-auto object-cover">
-              </div>
-            </div>
-            <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-              (click)="previous()">‹</button>
-            <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-              (click)="forward()">›</button>
-          </div>
-        </div>
-
+      <div class="bannerHome rounded-xl">
+        <h1 class="p-8 uppercase tracking-widest text-gray-800 text-5xl"> Residencial Oceano</h1>
       </div>
-
-      <div class="bannerHome">
-
-      </div>
-
-
-
-      <div class="max-w-2xl mx-auto">
-      </div>
-      <h1 class="text-3xl">Noticias Litoral Norte</h1>
+      <h1 class="text-3xl mt-5">Noticias Litoral Norte</h1>
       <p>{{ today.getDate() }} {{ getMonthFullName() }} {{ today.getFullYear() }}</p>
       <div class="flex flex-wrap -mx-3 bg-gray-50" style="height: 580px; overflow-y: auto;">
         <ng-container *ngIf="news.length > 0; else noNews">
@@ -60,7 +32,7 @@
           <p>Nenhuma notícia encontrada.</p>
         </ng-template>
       </div>
-
     </div>
+
   </main>
 </body>

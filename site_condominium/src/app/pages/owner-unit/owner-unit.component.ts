@@ -35,13 +35,13 @@ export class OwnerUnitComponent implements OnInit {
 
   chartOption: EChartsOption = {
     title: {
-      text: 'Cota Condominial'
+      text: ''
     },
     tooltip: {
       trigger: 'axis'
     },
     legend: {
-      data: ['Adimplênte','','','Inadimplênte']
+      data: ['Aberto', 'Adimplênte','Inadimplênte']
     },
     grid: {
       left: '3%',
@@ -66,6 +66,18 @@ export class OwnerUnitComponent implements OnInit {
       type: 'value'
     },
     series: [
+      {
+        name: 'Aberto',
+
+        type: 'line',
+        smooth: true,
+        data: [ ,18, 37, ],
+        label: {
+          show: true,
+          position: 'top',
+          formatter: '{c} unidade(s)'
+        }
+      },
        {
           name: 'Adimplênte',
 
