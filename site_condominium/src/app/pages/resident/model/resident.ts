@@ -3,7 +3,7 @@ export interface Resident {
   id:                        string;
   nomeCompleto:              string;
   dataNascimento:            string;
-  genero:                    string;
+  user:                      string;
   estadoCivil:               string;
   email:                     string;
   telefone:                  string;

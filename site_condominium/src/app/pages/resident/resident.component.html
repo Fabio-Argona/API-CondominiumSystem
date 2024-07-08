@@ -1,9 +1,14 @@
 <body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
-  <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
+  <main
+    class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
     <div class="w-full px-6 py-6 mx-auto mt-8">
       <div class="flex">
         <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
-          routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg class="h-6 w-6 text-zinc-600"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />  <circle cx="12" cy="7" r="4" /></svg> Area do Residente</h1>
+          routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg
+            class="h-6 w-6 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" /></svg> Area do Residente</h1>
       </div>
       <div class="flex flex-wrap -mx-3">
         <div class="max-w-full px-3 lg:w-2/3 lg:flex-none">
@@ -113,7 +118,8 @@
               <h6 class="mb-4 font-bold leading-tight uppercase text-xs text-slate-500">Em Aberto</h6>
               <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                 <ng-container *ngFor="let payment of payments">
-                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-green-100" *ngIf="transformStringToDate(payment.datePayment) > today">
+                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-green-100"
+                    *ngIf="transformStringToDate(payment.datePayment) > today">
                     <div>
                       <div class="flex flex-row">
                         <div>
@@ -121,7 +127,8 @@
                             Valor boleto:
                           </h6>
                         </div>
-                        <p class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
+                        <p
+                          class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
                           {{ payment?.valuePayment }}
                         </p>
                       </div>
@@ -133,7 +140,9 @@
                       <div class="flex items-center">
                         <div class="flex flex-col">
                           <button class="mr-2">
-                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" />
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -151,11 +160,11 @@
                   </li>
                 </ng-container>
               </ul>
-
               <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                 <h6 class="my-4 font-bold leading-tight uppercase text-xs text-slate-500">Vencido(s)</h6>
                 <ng-container *ngFor="let payment of payments">
-                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-red-100" *ngIf="transformStringToDate(payment.datePayment) <= today">
+                  <li class="relative flex justify-between p-4 mb-1 border-0 rounded-xl bg-red-100"
+                    *ngIf="transformStringToDate(payment.datePayment) <= today">
                     <div>
                       <div class="flex flex-row">
                         <div>
@@ -163,7 +172,8 @@
                             Valor boleto:
                           </h6>
                         </div>
-                        <p class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
+                        <p
+                          class="relative z-10 inline-block mx-2 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-rose-400 text-sm bg-clip-text">
                           {{ payment?.valuePayment }}
                         </p>
                       </div>
@@ -175,7 +185,9 @@
                       <div class="flex items-center">
                         <div class="flex flex-col">
                           <button class="mr-2">
-                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="h-8 w-8 text-red-600" width="24" height="24" viewBox="0 0 24 24"
+                              stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                              stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" />
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -194,48 +206,9 @@
                 </ng-container>
               </ul>
             </div>
-
           </div>
         </div>
       </div>
-      <footer class="pt-4">
-        <div class="w-full px-6 mx-auto">
-          <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
-            <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
-              <div class="leading-normal text-center text-sm text-slate-500 lg:text-left">
-                © made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Creative
-                  Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
-              <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com"
-                    class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                    target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation"
-                    class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                    target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://creative-tim.com/blog"
-                    class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                    target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license"
-                    class="block px-4 pt-0 pb-1 pr-0 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                    target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   </main>
 </body>

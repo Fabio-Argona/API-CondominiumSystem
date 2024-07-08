@@ -32,6 +32,8 @@ export class LoginComponent{
           if (resident.password === this.password) {
             // Login bem sucedido
             console.log('Login successful!');
+            window.location.reload();
+
 
             // Armazena o ID e o nome do usuário logado no localStorage
             localStorage.setItem('loggedInUserId', resident.id);
