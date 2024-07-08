@@ -1,8 +1,8 @@
-<body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 text-slate-500">
+<body class="m-0 font-sans antialiased h-full font-normal text-base leading-default bg-gray-50 pb-5 text-slate-500">
   <div class="flex justify-around mt-8">
 
   </div>
-  <main class="ease-soft-in-out xl:ml-68.5 relative max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4">
+  <main class="ease-soft-in-out xl:ml-68.5 relative  rounded-xl transition-all duration-200 mx-40 mt-4">
     <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
       <div class="flex-auto p-4 pt-6">
         <div class="flex justify-between">
@@ -13,9 +13,18 @@
             <h2 class="text-base "> Listagem de residentes</h2>
           </div>
           <div>
-            <button routerLink="/payment">
+            <button routerLink="/payment"  class="mr-6">
               <svg class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 3v4a1 1 0 0 0 1 1h4" />  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />  <line x1="12" y1="11" x2="12" y2="17" />  <line x1="9" y1="14" x2="15" y2="14" /></svg>
-              Boleto</button>
+              Boleto
+            </button>
+            <button routerLink="/resident-form-add">
+              <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+              </svg>
+              Residente
+            </button>
+
+
           </div>
         </div>
         <form class="d-flex mb-5 w-full" role="search">
@@ -30,73 +39,46 @@
             <tr>
               <th class="text-start p-1 border-b-2 h-4">Unidade</th>
               <th class="text-start p-1 border-b-2 h-12">Morador</th>
-              <th class="text-start p-1 border-b-2 h-4">email </th>
-              <th class="text-start p-1 border-b-2 h-4">Telefone / Celular </th>
-              <th class="text-start p-1 border-b-2 h-4">Documento </th>
-              <th></th>
+              <th class="text-start p-1 border-b-2 h-4">E-mail</th>
+              <th class="text-start p-1 border-b-2 h-4">Telefone / Celular</th>
+              <th class="text-start p-1 border-b-2 h-4">Documento</th>
+              <th class="text-start p-1 border-b-2 h-4"></th>
               <th class="text-start p-1 border-b-2 h-12"></th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngFor="let resident of residents | searchfilter:searchValue | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength }; let i = index; trackBy: trackByResidentId">
-              <tr class="" >
-                <td class="p-0 border-b h-4">{{ resident.unidade }}</td>
-                <td class="p-0 border-b h-12">{{ resident.nomeCompleto }}</td>
-                <td class="p-0 border-b h-4">{{ resident.email }}</td>
-                <td class="p-0 border-b h-4">{{ resident.telefone }}</td>
-                <td class="p-0 border-b h-4">{{ resident.cpf }}</td>
+              <tr class="{{ i % 2 === 0 ? 'bg-white' : 'bg-gray-50' }}">
+                <td class="px-1 border-b h-4">{{ resident.unidade }}</td>
+                <td class="border-b h-12">{{ resident.nomeCompleto }}</td>
+                <td class="border-b h-4">{{ resident.email }}</td>
+                <td class="border-b h-4">{{ resident.telefone }}</td>
+                <td class="border-b h-4">{{ resident.cpf }}</td>
+                <td class="border-b h-12 text-right">
+                  <a [routerLink]="['/resident-form', resident.id]">
+                    <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                  </a>
+                </td>
                 <td class="p-0 border-b h-12 text-right">
-                  <a [routerLink]="['/resident-form', resident.id]"><svg class="h-6 w-6 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                  </svg>
-
+                  <a (click)="deleteResident(resident)">
+                    <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                    </svg>
                   </a>
                 </td>
               </tr>
             </ng-container>
           </tbody>
         </table>
+
+
       </div>
-    </div>
-    <div class="pagination text-end mt-2">
-      <pagination-controls (pageChange)="page=$event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+      <div class="pagination text-end mt-2">
+        <pagination-controls (pageChange)="page=$event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+      </div>
     </div>
   </main>
-  <footer class="pt-4">
-    <div class="w-full px-6 mx-auto">
-      <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
-        <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
-          <div class="leading-normal text-center text-sm text-slate-500 lg:text-left">
-            © made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
-        </div>
-        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
-          <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com"
-                class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation"
-                class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://creative-tim.com/blog"
-                class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license"
-                class="block px-4 pt-0 pb-1 pr-0 font-normal transition-colors ease-soft-in-out text-sm text-slate-500"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+
 </body>

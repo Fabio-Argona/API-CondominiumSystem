@@ -6,6 +6,7 @@ import com.condominium.resident.exceptions.ServiceException;
 import com.condominium.resident.model.Resident;
 import com.condominium.resident.repositiry.ResidentRepository;
 
+import com.mongodb.DuplicateKeyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,16 +28,28 @@ public class ResidentService {
         return list.stream().map(ResidentDTO::new).toList();
     }
 
-    @Transactional
     public ResidentDTO create(ResidentDTO residentDTO) throws ServiceException {
         try {
+            // Verificar se o e-mail já existe
+            Resident existingResident = repository.findByEmail(residentDTO.getEmail());
+            if (existingResident != null) {
+                throw new ServiceException("E-mail already exists.");
+            }
+
+            // Criar a entidade Resident a partir de ResidentDTO
             Resident entity = new Resident(residentDTO);
             entity.setRegistryUser(residentDTO.getRegistryUser());
             entity.setCreated(LocalDateTime.now().toString());
-            repository.save(entity);
-            return new ResidentDTO(entity);
+
+            // Salvar no banco de dados
+            Resident savedResident = repository.save(entity);
+
+            // Retornar ResidentDTO criado a partir da entidade salva
+            return new ResidentDTO(savedResident);
+        } catch (DuplicateKeyException e) {
+            throw new ServiceException("Failed to create resident: E-mail already exists.");
         } catch (Exception e) {
-            throw new ServiceException("Failed to create resident: " + e.getMessage()); // Correção aqui
+            throw new ServiceException("Failed to create resident: " + e.getMessage());
         }
     }
     public ResidentDTO findById(String id) throws ServiceException {

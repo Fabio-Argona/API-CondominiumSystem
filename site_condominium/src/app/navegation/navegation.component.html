@@ -9,7 +9,7 @@
         </svg>
       </label>
       <input class="hidden" type="checkbox" id="menu-toggle">
-      <div  class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+      <div  class="hidden md:flex md:items-center md:w-auto h-auto w-full order-3 md:order-1" id="menu">
         <nav>
           <ul class="md:flex items-center justify-between text-base text-zinc-600 pt-4 md:pt-0">
             <li><a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
@@ -25,10 +25,10 @@
                 Residente
               </a>
             </li>
-            <ng-container *ngFor="let resident of residents">
-              <li *ngIf="resident.user === 'Administrador'">
-                <a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
-                   routerLink="/owner-unit" routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName">
+
+              <li >
+              <a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+                   routerLink="/owner-unit" routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName = Fabio Luis Argona">
                   <svg class="h-6 w-6 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z"/>
                     <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8"/>
@@ -40,19 +40,12 @@
                   Proprietário
                 </a>
               </li>
-            </ng-container>
-         
-
             <li *ngIf="loggedInUserName === 'Fabio Luis Argona'"><a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
                 routerLink="/owner" routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg class="h-6 w-6 text-zinc-600"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                 </svg>
                  Administrador</a>
             </li>
-
-
-
-
           </ul>
         </nav>
       </div>
@@ -64,7 +57,6 @@
               <span class="bg-transparent text-gray-800 p-2 hover:bg-gray-100 hover:text-gray-700"><svg class="h-6 w-6 text-zinc-600"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-
                 Bem-vindo,
               </span>
               <span class="text-blue-500">

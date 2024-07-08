@@ -3,7 +3,9 @@ package com.condominium.resident.dto;
 import com.condominium.resident.model.Resident;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.io.Serializable;
 
@@ -23,6 +25,7 @@ public class ResidentDTO implements Serializable {
 
     private String estadoCivil;
 
+    @Indexed(unique = true)
     private String email;
 
     //@Pattern(regexp = "\\d{11}", message = "O telefone deve ser: " + "No formato: XXXXXXXXXXX (Apenas números)" + "Devem ser inseridos 11 números (DDD, 9 na frente e o número em si")

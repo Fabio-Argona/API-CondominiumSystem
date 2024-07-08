@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../administrator/payment/service/payment.service';
 import { Payment } from '../../administrator/payment/model/payment';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-resident',
@@ -16,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./resident.component.scss']
 })
 export class ResidentComponent implements OnInit {
+
   resident: Resident | null = null;
   payment: Payment[] = [];
   payments: Payment[] = [];
@@ -48,7 +48,6 @@ export class ResidentComponent implements OnInit {
       console.error('Nenhum ID de residente encontrado no localStorage');
     }
   }
-
 
   loadPayments(): void {
     const residentId = localStorage.getItem('loggedInUserId');
@@ -106,5 +105,8 @@ export class ResidentComponent implements OnInit {
   transformStringToDate(dateString: string): Date {
     return new Date(dateString);
   }
-}
 
+  returnRoute() {
+    this.router.navigate(['/home']);
+  }
+}

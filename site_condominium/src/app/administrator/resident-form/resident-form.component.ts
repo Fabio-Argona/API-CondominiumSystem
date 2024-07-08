@@ -25,10 +25,6 @@ CreatePayment() {
 }
 
 formTouched: any;
-onSubmit() {
-
-  throw new Error('Method not implemented.');
-}
 
 residents: Resident[] = []
 resident: Resident | null = null;
@@ -76,6 +72,42 @@ imagePreview: string | ArrayBuffer | null = null;
         console.error('Erro ao carregar dados do pagamento', error);
       }
     );
+  }
+
+  updateResidentAdm(): void {
+    if (this.resident) {
+      console.log('Dados do residente a serem enviados:', this.resident);
+      this.service.update(this.resident.id, this.resident).subscribe(
+        (data: Resident) => {
+          console.log('Residente atualizado com sucesso', data);
+        },
+        error => {
+          console.error('Erro ao atualizar residente', error);
+        }
+      );
+    } else {
+      console.error('Não há dados do residente para atualizar');
+    }
+  }
+
+  editDataResident(resident: Resident): void {
+    console.log('Editando dados do residente:', resident);
+
+    const residentToUpdate = { ...resident };
+    delete (residentToUpdate as any).orderItemsAsString;
+
+    this.service.update(resident.id, residentToUpdate).subscribe(
+      (updatedResident) => {
+        console.log('Residente atualizado com sucesso:', updatedResident);
+      },
+      (error) => {
+        console.error('Erro ao atualizar residente:', error);
+      }
+    );
+  }
+
+  onSubmit(): void {
+    this.updateResidentAdm();
   }
 
   transformStringToDate(dateString: string): Date {
