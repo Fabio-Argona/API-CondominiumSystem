@@ -40,7 +40,7 @@
           <tbody>
             <ng-container *ngFor="let resident of residents | searchfilter:searchValue | paginate: { itemsPerPage: 9, currentPage: page, totalItems: totalLength }; let i = index; trackBy: trackByResidentId">
               <tr class="" >
-                <td class="p-0 border-b h-4">Casa 0{{ resident.unidade }}</td>
+                <td class="p-0 border-b h-4">{{ resident.unidade }}</td>
                 <td class="p-0 border-b h-12">{{ resident.nomeCompleto }}</td>
                 <td class="p-0 border-b h-4">{{ resident.email }}</td>
                 <td class="p-0 border-b h-4">{{ resident.telefone }}</td>

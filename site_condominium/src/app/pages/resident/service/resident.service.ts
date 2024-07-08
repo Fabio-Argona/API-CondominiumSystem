@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Resident } from '../../resident/model/resident';
 
 @Injectable({
@@ -38,7 +38,6 @@ export class ResidentService {
   getUserByEmail(email: string): Observable<Resident> {
     return this.http.get<Resident>(`${this.baseUrl}/getEmail/${email}`);
   }
-
 
   getNews(query: string): Observable<any> {
     const url = `${this.apiUrl}?q=${query}&apiKey=${this.apiKey}`;

@@ -10,13 +10,13 @@ import { OwnerUnitComponent } from './pages/owner-unit/owner-unit.component';
 
 export const routes: Routes = [
 
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'resident', component: ResidentComponent },
   { path: 'owner', component: OwnersComponent },
   { path: 'owner-unit', component: OwnerUnitComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'resident-form/:id', component: ResidentFormComponent },
-  { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },
 ];
