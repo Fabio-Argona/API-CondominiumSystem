@@ -6,13 +6,17 @@ import { Resident } from '../../pages/resident/model/resident';
 import { FormsModule } from '@angular/forms';
 import { Payment } from '../payment/model/payment';
 import { PaymentService } from '../payment/service/payment.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-resident-form-add',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NgxMaskDirective],
   templateUrl: './resident-form-add.component.html',
-  styleUrls: ['./resident-form-add.component.scss']
+  styleUrls: ['./resident-form-add.component.scss'],
+  providers: [
+    provideNgxMask(),
+],
 })
 export class ResidentFormAddComponent implements OnInit {
 
@@ -34,12 +38,13 @@ export class ResidentFormAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createResident();
+    // this.createResident();
   }
 
   initializeResident(): Resident {
     return {
       id: '',
+      unidade: '',
       nomeCompleto: '',
       dataNascimento: '',
       user: '',
@@ -51,7 +56,6 @@ export class ResidentFormAddComponent implements OnInit {
       cpf: '',
       password: '',
       fotoUrl: '',
-      unidade: '',
       dataInicioResidencia: '',
       statusResidencia: '',
       numeroMoradoresUnidade: 1,
@@ -83,4 +87,12 @@ export class ResidentFormAddComponent implements OnInit {
       }
     );
   }
+
+  transformToTitleCase(value: string) {
+    this.resident.nomeCompleto = value.replace(/\w\S*/g, (txt) => {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  }
+
+
 }

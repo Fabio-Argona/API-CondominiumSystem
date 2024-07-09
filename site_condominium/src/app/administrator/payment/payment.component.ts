@@ -20,7 +20,7 @@ export class PaymentComponent implements OnInit {
   residents: Resident[] = [];
   loggedInUserName: string = '';
 
-  statusOptions: string[] = ['Aberto', 'Pendente', 'Atrasado'];
+  statusOptions: string[] = ['Aberto', 'Pago', 'Atrasado'];
 
   selectedResident: Resident | null = null;
   selectedResidentId: string = '';

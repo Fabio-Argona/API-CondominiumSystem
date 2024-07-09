@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Resident } from './model/resident';
 import { ResidentService } from './service/resident.service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../administrator/payment/service/payment.service';
 import { Payment } from '../../administrator/payment/model/payment';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-resident',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxMaskDirective],
   templateUrl: './resident.component.html',
-  styleUrls: ['./resident.component.scss']
+  styleUrls: ['./resident.component.scss'],
+  providers: [
+    provideNgxMask(),
+],
 })
 export class ResidentComponent implements OnInit {
 
   resident: Resident | null = null;
-  payment: Payment[] = [];
   payments: Payment[] = [];
   today: Date = new Date();
 
@@ -29,6 +32,9 @@ export class ResidentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+
+
     this.loadResident();
     this.loadPayments();
   }
@@ -49,13 +55,16 @@ export class ResidentComponent implements OnInit {
     }
   }
 
+  transformStringToDate(dateString: string): Date {
+    return new Date(dateString);
+  }
+
   loadPayments(): void {
     const residentId = localStorage.getItem('loggedInUserId');
     if (residentId) {
       this.paymentService.getResidentPayment(residentId).subscribe(
-        (data: Payment[]) => {  // 'data' é do tipo Payment[]
-          console.log('Dados do pagamento recebidos do banco:', data);
-          this.payments = data;  // Atribui o array de pagamentos à variável 'payments'
+        (data: Payment[]) => {
+          this.payments = data;
         },
         error => {
           console.error('Erro ao carregar dados do pagamento', error);
@@ -68,7 +77,6 @@ export class ResidentComponent implements OnInit {
 
   updateResident(): void {
     if (this.resident) {
-      console.log('Dados do residente a serem enviados:', this.resident);
       this.service.update(this.resident.id, this.resident).subscribe(
         (data: Resident) => {
           console.log('Residente atualizado com sucesso', data);
@@ -83,8 +91,6 @@ export class ResidentComponent implements OnInit {
   }
 
   editDataResident(resident: Resident): void {
-    console.log('Editando dados do residente:', resident);
-
     const residentToUpdate = { ...resident };
     delete (residentToUpdate as any).orderItemsAsString;
 
@@ -102,9 +108,8 @@ export class ResidentComponent implements OnInit {
     this.updateResident();
   }
 
-  transformStringToDate(dateString: string): Date {
-    return new Date(dateString);
-  }
+  
+
 
   returnRoute() {
     this.router.navigate(['/home']);

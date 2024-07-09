@@ -61,11 +61,13 @@
                       <input type="email" id="email" name="email" [(ngModel)]="resident.email"
                         class="border border-gray-300 p-2 rounded-lg w-full" required>
                     </div>
-                    <div class="mb-4 w-1/4 ">
+                    <div class="mb-4 w-1/4">
                       <label for="telefone" class="block text-sm font-medium text-gray-700">Telefone</label>
-                      <input type="cel" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
-                        class="border border-gray-300 p-2 rounded-lg w-full" required mask="(00) 00000-0000">
+                      <input type="tel" id="telefone" name="telefone" [(ngModel)]="resident.telefone"
+                        class="border border-gray-300 p-2 rounded-lg w-full" mask="(00) 00000-0000" autocomplete="off">
                     </div>
+
+
                   </div>
                   <div class="flex justify-between">
                     <div class="mb-4 mr-3 w-1/2">

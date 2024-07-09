@@ -47,7 +47,7 @@
                     <div class="mb-4 mr-2">
                       <label for="unidade" class="block text-sm font-medium text-gray-700">Unidade</label>
                       <input type="text" id="unidade" name="unidade" [(ngModel)]="resident.unidade"
-                        class="border border-gray-300 p-2 rounded-lg w-full" disabled="true">
+                        class="border border-gray-300 p-2 rounded-lg w-full">
                     </div>
                     <div class="mb-4 ml-1 w-4/5">
                       <label for="nomeCompleto" class="block text-sm font-medium text-gray-700">Nome Completo</label>
@@ -65,7 +65,7 @@
                     <div class="mb-4 w-1/2">
                       <label for="cpf" class="block text-sm font-medium text-gray-700">CPF</label>
                       <input type="text" id="cpf" name="cpf" [(ngModel)]="resident.cpf"
-                        class="border border-gray-300 p-2 rounded-lg w-full">
+                        class="border border-gray-300 p-2 rounded-lg w-full" mask="000.000.000-00">
                     </div>
                   </div>
                   <div class="flex justify-between">
