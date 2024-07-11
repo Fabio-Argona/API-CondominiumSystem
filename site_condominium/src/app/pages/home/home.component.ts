@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
           const dateB = new Date(b.publishedAt);
           return dateB.getTime() - dateA.getTime();
         });
-        this.filterNewsLast10Days();
+        this.filterLast4News();
       },
       (error) => {
         console.error('Erro ao buscar notícias', error);
@@ -50,15 +50,28 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  filterNewsLast10Days(): void {
-    const today = new Date();
-    const last10Days = new Date(today);
-    last10Days.setDate(last10Days.getDate() - 5);
-    this.news = this.news.filter((newsItem: any) => {
-      const publishedAt = new Date(newsItem.publishedAt);
-      return publishedAt >= last10Days;
+  // filterNewsLast10Days(): void {
+  //   const today = new Date();
+  //   const last10Days = new Date(today);
+  //   last10Days.setDate(last10Days.getDate() - 10);
+  //   this.news = this.news.filter((newsItem: any) => {
+  //     const publishedAt = new Date(newsItem.publishedAt);
+  //     return publishedAt >= last10Days;
+  //   });
+  // }
+
+  filterLast4News(): void {
+    // Ordenar as notícias pela data de publicação em ordem decrescente
+    this.news.sort((a: any, b: any) => {
+      const dateA = new Date(a.publishedAt);
+      const dateB = new Date(b.publishedAt);
+      return dateB.getTime() - dateA.getTime(); // Ordena em ordem decrescente
     });
+
+    // Selecionar somente as quatro últimas notícias
+    this.news = this.news.slice(0, 4);
   }
+
 
   previous(): void {
     if (this.currentIndex > 1) {

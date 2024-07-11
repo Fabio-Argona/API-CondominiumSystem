@@ -7,14 +7,18 @@ import { Resident } from '../../pages/resident/model/resident';
 import { FormsModule } from '@angular/forms';
 import { Payment } from '../payment/model/payment';
 import { PaymentService } from '../payment/service/payment.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 
 @Component({
   selector: 'app-resident-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NgxMaskDirective],
   templateUrl: './resident-form.component.html',
-  styleUrls: ['./resident-form.component.scss']
+  styleUrls: ['./resident-form.component.scss'],
+  providers: [
+    provideNgxMask(),
+],
 })
 export class ResidentFormComponent implements OnInit {
 

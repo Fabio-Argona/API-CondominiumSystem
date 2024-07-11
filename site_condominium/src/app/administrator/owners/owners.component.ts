@@ -40,25 +40,30 @@ export class OwnersComponent implements OnInit {
 
   loadAll(): void {
     this.residentService.list()
-      .subscribe(residents => {
-        this.residents = residents;
-        this.totalLength = residents.length; // ou definir o total real dos itens se disponível na resposta da API
-      });
+    .subscribe(residents => {
+      this.residents = residents;
+      this.totalLength = residents.length; // ou definir o total real dos itens se disponível na resposta da API
+    });
   }
 
   CreatePayment() {
     this.router.navigate(['/payment'])
-    }
+  }
 
   deleteResident(resident: Resident): void {
     this.residentService.delete(resident.id)
-      .subscribe(() => {
-        this.loadAll();
-      });
+    .subscribe(() => {
+      this.loadAll();
+    });
   }
 
   editResident(resident: Resident): void {
     console.log('Editing resident:', resident);
     // Adicione a lógica para editar o residente aqui
   }
+
+  CreateResidentPage() {
+    this.router.navigate(['/resident-form-add'])
+  }
 }
+

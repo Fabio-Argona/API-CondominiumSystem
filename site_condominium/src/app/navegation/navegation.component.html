@@ -54,9 +54,7 @@
         <div class="auth items-center w-full md:w-full">
           <div class="flex items-center" >
             <p class="mr-10">
-              <span class="bg-transparent text-gray-800 p-2 hover:bg-gray-100 hover:text-gray-700"><svg class="h-6 w-6 text-zinc-600"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
+              <span class="bg-transparent text-gray-800 p-2 hover:bg-gray-100 hover:text-gray-700">
                 Bem-vindo,
               </span>
               <span class="text-blue-500">
@@ -64,15 +62,25 @@
 
               </span>
             </p>
-            <!-- <button
-              (click)="logout()"
-              class="bg-transparent text-gray-800 p-2  mr-4 hover:bg-gray-100 hover:text-gray-700"
-              routerLinkActive="active"><svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>Sair</button> -->
-              <div *ngIf="loggedInUserName">
-                <button
-                  class="0"
-                  routerLink="/login" (click)="logout()" routerLinkActive="active"><svg class="h-6 w-6 text-red-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg></button>
-              </div>
+
+             <ul>
+
+              <li  *ngIf="loggedInUserName"><a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+                (click)="logout()" routerLinkActive="active" ariaCurrentWhenActive="page"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+
+                Sair</a>
+            </li>
+            <li  *ngIf="!loggedInUserName"><a class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
+              routerLink="/owner" routerLinkActive="active" ariaCurrentWhenActive="page" ><svg class="h-6 w-6 text-zinc-600"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+              Entrar</a>
+          </li>
+             </ul>
+
+
           </div>
         </div>
       </div>

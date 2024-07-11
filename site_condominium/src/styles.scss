@@ -4,43 +4,6 @@
 @tailwind utilities;
 
 
-  // .active{
-  //   background-color: red;
-  //   color: white;
-  //   padding: 5px;
-  //   margin: 5px;
-  //   border-radius: 5px;
-  // }
-
-  .iconItau {
-    background-image: url(./assets/icons/itau-logo-1.png);
-    background-size: cover;
-
-  }
-
-  .iconEdp {
-    background-image: url(./assets/icons/edp.jpeg);
-  background-size: cover;
-  border: 1px solid #770a0a;
-
-
-  }
-
-.iconSabesp {
-  background-image: url(./assets/icons/sabesp.png);
-  background-size: cover;
-}
-
-.iconContabilidade {
-  background-image: url(./assets/icons/conta2.jpeg);
-  background-size: cover;
-}
-
-.iconAdm {
-  background-image: url(./assets/icons/adm.jpg);
-  background-size: cover;
-
-}
 
 .dropdown-menu {
   min-width: 12rem;

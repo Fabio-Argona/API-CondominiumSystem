@@ -1,34 +1,43 @@
-<body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
+<body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 ">
   <main
-    class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200  mx-40 mt-4">
+    class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 mx-40 mt-4 ">
     <!-- Navbar -->
     <div class="w-full px-6 py-6 mx-auto mt-8">
-      <div class="flex">
-        <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
-          routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg
-            class="h-6 w-6 text-zinc-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" />
-            <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
-            <line x1="13" y1="7" x2="13" y2="7.01" />
-            <line x1="17" y1="7" x2="17" y2="7.01" />
-            <line x1="17" y1="11" x2="17" y2="11.01" />
-            <line x1="17" y1="15" x2="17" y2="15.01" /></svg> Area do Proprietário</h1>
+      <div class="flex justify-between">
+        <div>
+          <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
+            routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName"><svg
+              class="h-6 w-6 text-zinc-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" />
+              <line x1="13" y1="7" x2="13" y2="7.01" />
+              <line x1="17" y1="7" x2="17" y2="7.01" />
+              <line x1="17" y1="11" x2="17" y2="11.01" />
+              <line x1="17" y1="15" x2="17" y2="15.01" /></svg> Area do Proprietário</h1>
+        </div>
+        <div>
+          <h1 class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2" routerLink=""
+            routerLinkActive="active" ariaCurrentWhenActive="page" ngif="loggedInUserName">
+            <div class="iconeItau">
+            </div>
+             Saldo: R$ 16.210,03</h1>
+        </div>
       </div>
       <!-- content -->
       <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 lg:w-1/3 lg:flex-none">
         </div>
       </div>
-      <div class="flex flex-wrap -mx-3">
+      <div class="flex flex-wrap -mx-3 bgFull bannerBg rounded-xl p-2">
         <div class="w-full max-w-full px-3 mt-6 md:w-7/12 md:flex-none">
           <p class="text-center font-medium text-lg py-2 px-4 lg:-ml-2">Cota Condominial</p>
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+          <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
             <div class="p-6 px-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-              <div echarts [options]="chartOption"></div>
+              <div echarts [options]="chartOption" class="chart-container"></div>
             </div>
           </div>
+
         </div>
         <div class="w-full max-w-full px-3 mt-6 md:w-5/12 md:flex-none">
           <div
@@ -51,27 +60,46 @@
                   class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
                   <div class="flex items-center">
                     <div class="flex flex-col">
-                      <h6 class="mb-1 leading-normal text-sm text-slate-700">Cota Condominial</h6>
-                      <span class="leading-tight text-xs">julho 2024</span>
+                      <h6 class="mb-1 leading-normal text-sm text-slate-700">Cota Adimplênte</h6>
+                      <small>Boletoo(s) Pago(s)</small>
+
                     </div>
                   </div>
                   <div class="flex flex-col items-center justify-center">
                     <p
-                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
-                      R$ 900,00</p>
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-indigo-600 to-blue-300 text-sm bg-clip-text">
+                      {{ totalValueAllPayments-totalValuePastPayments | currency:'BRL':'symbol':'1.2-2' }}</p>
                   </div>
+
+                </li>
+                <li
+                  class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 rounded-t-inherit text-inherit rounded-xl">
+                  <div class="flex items-center">
+                    <div class="flex flex-col">
+                      <h6 class="mb-1 leading-normal text-sm text-slate-700">Cota Inadimplênte</h6>
+                      <small>Boletoo(s) em atrazo</small>
+                      <span class="leading-tight text-xs"></span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col items-center justify-center">
+                    <p
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-pink-500 to-red-400 text-sm bg-clip-text">
+                      {{ totalValuePastPayments | currency:'BRL':'symbol':'1.2-2' }}</p>
+                  </div>
+
                 </li>
                 <li
                   class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 border-t-0 rounded-b-inherit text-inherit rounded-xl">
                   <div class="flex items-center">
                     <div class="flex flex-col">
-                      <h6 class="mb-1 leading-normal text-sm text-slate-700">Aluguel casa de apoio</h6>
-                      <span class="leading-tight text-xs">julho 2024</span>
+                      <h6 class="mb-1 leading-normal text-sm text-slate-700">Aluguel </h6>
+                      <small>Casa dos fundos</small>
+
                     </div>
                   </div>
                   <div class="flex flex-col items-center justify-center">
                     <p
-                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-blue-600 to-blue-400 text-sm bg-clip-text">
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-indigo-600 to-blue-300 text-sm bg-clip-text">
                       R$ 700,00</p>
                   </div>
                 </li>
@@ -83,13 +111,14 @@
                   <div class="flex items-center">
                     <div class="flex flex-col">
                       <h6 class="mb-1 leading-normal text-sm text-slate-700">Custas Bancárias</h6>
-                      <span class="leading-tight text-xs">julho 2024</span>
+                      <small>Tarifa plano adapt 1</small>
+
                     </div>
                   </div>
                   <div class="flex flex-col items-center justify-center">
                     <p
-                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-red-400 text-sm bg-clip-text">
-                      R$ 750</p>
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-pink-500 to-red-400 text-sm bg-clip-text">
+                      R$ 139,00</p>
                   </div>
                 </li>
                 <li
@@ -97,26 +126,26 @@
                   <div class="flex items-center">
                     <div class="flex flex-col">
                       <h6 class="mb-1 leading-normal text-sm text-slate-700">Contabilidade</h6>
-                      <span class="leading-tight text-xs">julho 2024</span>
+                      <small>Serviços Contabeis</small>
                     </div>
                   </div>
                   <div class="flex flex-col items-center justify-center">
                     <p
-                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-red-400 text-sm bg-clip-text">
-                      R$ 1.000</p>
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl  from-pink-500 to-red-400 text-sm bg-clip-text">
+                      R$ 150,00</p>
                   </div>
                 <li
                   class="relative flex justify-between px-4 py-2 pl-0 mb-2 bg-white border-0 border-t-0 text-inherit rounded-xl">
                   <div class="flex items-center">
                     <div class="flex flex-col">
                       <h6 class="mb-1 leading-normal text-sm text-slate-700">Administração</h6>
-                      <span class="leading-tight text-xs">26 March 2020, at 12:30 PM</span>
+                      <small></small>
                     </div>
                   </div>
                   <div class="flex flex-col items-center justify-center">
                     <p
-                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-red-600 to-red-400 text-sm bg-clip-text">
-                      R$ 1,000</p>
+                      class="relative z-10 inline-block m-0 font-semibold leading-normal text-transparent bg-gradient-to-tl from-pink-500 to-red-400 text-sm bg-clip-text">
+                      R$ 105,00</p>
                   </div>
                 </li>
               </ul>

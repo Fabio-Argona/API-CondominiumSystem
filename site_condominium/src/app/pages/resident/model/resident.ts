@@ -1,6 +1,7 @@
 
 export interface Resident {
   id:                        string;
+  unidade:                   string;
   nomeCompleto:              string;
   dataNascimento:            string;
   user:                      string;
@@ -12,7 +13,6 @@ export interface Resident {
   cpf:                       string;
   password:                  string;
   fotoUrl:                   string;
-  unidade:                   string;
   dataInicioResidencia:      string;
   statusResidencia:          string;
   numeroMoradoresUnidade:    number;
