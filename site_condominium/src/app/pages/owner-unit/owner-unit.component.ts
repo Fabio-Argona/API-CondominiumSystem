@@ -106,7 +106,7 @@ export class OwnerUnitComponent implements OnInit {
   private getLastTwelveMonths(): string[] {
     const months = [];
     const now = new Date();
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 6; i++) {
       const month = new Date(now.getFullYear(), now.getMonth() - i, 1);
       const monthString = `${month.getFullYear()}-${(month.getMonth() + 1).toString().padStart(2, '0')}`;
       months.push(monthString);
@@ -134,7 +134,7 @@ export class OwnerUnitComponent implements OnInit {
   calculateUnitsInadimplentes(): void {
     const unitsPaid = this.countPaymentsByStatus(this.payments, 'Atrasado');
     this.unitsInadimplentes = this.unitsExpected - unitsPaid;
-    this.updateChart(); // Atualize o gráfico após calcular as unidades inadimplentes
+    this.updateChart();
   }
 
 
@@ -189,7 +189,7 @@ export class OwnerUnitComponent implements OnInit {
             label: {
               show: true,
               position: 'top',
-              formatter: '{c} unidade(s)'
+              formatter: '{c} un'
             }
           },
           {
@@ -200,7 +200,7 @@ export class OwnerUnitComponent implements OnInit {
             label: {
               show: true,
               position: 'top',
-              formatter: '{c} unidade(s)'
+              formatter: '{c} un'
             }
           },
           {
@@ -211,7 +211,7 @@ export class OwnerUnitComponent implements OnInit {
             label: {
               show: true,
               position: 'top',
-              formatter: '{c} unidade(s)'
+              formatter: '{c} un'
             }
           },
         ]
