@@ -11,9 +11,6 @@ Este documento descreve a arquitetura e o design de um sistema de controle e adm
 | Backend (Java) |
 | Database (MongoDB) |
 
-markdown
-Copiar código
-
 ## Tecnologias Utilizadas
 - **Frontend:** Angular
 - **Backend:** Java (Spring Boot)
